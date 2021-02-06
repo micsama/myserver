@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{%  %}
+<h1 class="center">{% 正在测试中！！ %}</h1>
+<link rel="stylesheet" href="static/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<html lang="zh-CN">
+
+<head>
+    <title>{{block "title" .}}{{ end }}</title>
+    <style type="text/css" media="screen">
+        .center {
+            text-align: center;
+        }
+        .right {
+            text-align:right;
+        }
+    </style>
+	    <script type="text/javascript">
+    function sa()
+    {
+    var Time=new Date();
+    document.getElementById("div").innerHTML=Time.toLocaleString();
+    }
+   window.setInterval("sa()",1000);
+    </script>
+</head>
+
+<body>
+    <p>
+		<nav class="center">
+			{{block "header" .}}{{end}}
+            <ul>
+				<li><a href="/home" target="_top">{{.uname}}</a></li>
+				{{if .uname}}
+                <li><a href="/logout" target="_top">注销</a></li>
+                <li><a href="/" target="_top">回到主页</a></li>
+				{{else}}
+                <li><a href="/register" target="_top">注册</a></li>
+                <li><a href="/signin" target="_top">登录</a></li>
+                <li><a href="/index" target="_top">回到主页</a></li>
+				{{end}}
+            </ul>
+        </nav>
+        <section class="content">
+            <div class="container-fluid">{{block "content" . }}{{ end }}</div>
+            <div class="flash">
+                <ul>
+                    <li>药房机器人后台</li>
+                    <li>消毒机器人后台</li>
+                </ul>
+            </div>
+        </section>
+    </p>
+    <p>
+ <div id="div" class="right" >
+    </div>
+	</p>
+
+</body>
+
+</html>
