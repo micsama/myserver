@@ -13,6 +13,7 @@ func runweb() {
 	r := gin.Default()
 	r.Use(Checklogin())
 	r.Static("/static", "./static")  //css
+	r.Static("/layui", "./layui")    //css
 	r.NoRoute(func(c *gin.Context) { //404
 		c.HTML(http.StatusNotFound, "404.html", nil)
 	})

@@ -3,10 +3,19 @@ package main
 import (
 	"crypto/sha256"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
-	"time"
+
+	"github.com/gin-gonic/gin"
 )
+
+type User struct {
+	Username string `gorm:"column:username" form:"username"`
+	Password string `gorm:"column:password" form:"password"`
+}
+
+func (u User) TableName() string {
+	return "users"
+}
 
 var cc = "欢迎！！"
 var sum [32]byte
@@ -16,7 +25,6 @@ func register(c *gin.Context) {
 	//从form输入绑定到login
 	login.Username = c.PostForm("username")
 	login.Password = c.PostForm("password")
-	login.createTime = time.Now().Unix()
 	//绑定成功后先判断是否存在用户名
 	tag = "register.html"
 	userdb.Where("username = ?", login.Username).Take(&u)
@@ -44,7 +52,6 @@ func signin(c *gin.Context) {
 	var cc string
 	//从form输入绑定到login
 	if err := c.ShouldBind(&login); err == nil {
-		login.createTime = time.Now().Unix()
 		//绑定成功后先判断是否存在用户名
 		userdb.Where("username = ?", login.Username).Take(&u)
 		if u.Username == "" {
