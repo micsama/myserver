@@ -3,3 +3,5 @@
 *.exe
 /tmp
 server
+config
+/layui
