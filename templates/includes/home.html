@@ -5,7 +5,10 @@
 {{define "header"}}
 <h1>控制台</h1>
 {{ end }}
+
 {{define "content"}}
+
+{{if .uname}}
 <div>欢迎来到我的控制台</div>
 <a href="/bot1" target="_top">
 	<img
@@ -16,4 +19,7 @@
 <a href="/bot2" target="_top">
 	<img src="https://2c.zol-img.com.cn/product/193_320x240/22/ce1M3cBEOgN1w.jpg" alt="" />
 </a>
+
+{{ end }}
+
 {{ end }}

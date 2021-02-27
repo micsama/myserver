@@ -65,7 +65,7 @@ func signin(c *gin.Context) {
 				messagetype = "1"
 				tag = "home.html"
 				uname = " " + login.Username + " "
-				c.SetCookie("name", login.Username, 1000, "/", myurl, false, true)
+				c.SetCookie("name", login.Username, 1000, "/", "", false, true)
 				c.SetCookie("acc", "admin", 1000, "/", myurl, false, true)
 			} else {
 				message = "密码错误！"
@@ -86,8 +86,8 @@ func signin(c *gin.Context) {
 }
 
 func logout(c *gin.Context) {
-	c.SetCookie("name", "Shimin Li", -1, "/", myurl, false, true)
-	c.SetCookie("acc", "Shimin Li", -1, "/", myurl, false, true)
+	c.SetCookie("name", "Shimin Li", -1, "/", "", false, true)
+	c.SetCookie("acc", "Shimin Li", -1, "/", "", false, true)
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"message": message,
 	})
