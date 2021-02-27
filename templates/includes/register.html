@@ -6,15 +6,48 @@
 <h1>欢迎注册！：</h1>
 {{ end }}
 {{define "content"}}
-<div>
-	{{.message}}
+<div class="layui-container">
+	<div class="layui-row">
+<div class="center">
+	<h1>Register</h1>
 </div>
-<form action="/register" method="POST">
-	<label for="username">用户名：</label>
-	<input name="username" id="username" required />
-	<label for="password">密码：</label>
-	<input type="password" name="password" id="password" required />
-	<input type="submit" value="注册！" />
-</form>
+		<div class="layui-col-md4  layui-col-md-offset4">
+			<br></br>
+			<form class="layui-form layui-form-pane" action="/signin" method="POST">
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="username">用户名：</label>
+					<div class="layui-input-inline">
+						<input
+							class="layui-input"
+							type="text"
+							lay-verify="required"
+							placeholder="请输入用户名"
+							autocomplete="username"
+							name="username"
+							id="username"
+							required
+						/>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label" for="password">密码：</label>
+					<div class="layui-input-inline">
+						<input
+							class="layui-input"
+							type="password"
+							name="password"
+							id="password"
+							autocomplete="new-password"
+							lay-verify="required"
+							placeholder="请输入密码"
+							required
+						/>
+					</div>
+				</div>
+				<button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"  ><i class="layui-icon">&#xe654;</i> 立即注册！！</button>
+			</form>
+		</div>
+	</div>
+</div>
 
 {{ end }}

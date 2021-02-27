@@ -14,10 +14,10 @@ var testing bool
 
 var datebase = "data/date.db"
 var myurl string
-var tag = "index.html" //default web
-var uname, acc string  //cookie
-var wg sync.WaitGroup  //sync
-var userdb *gorm.DB    //db
+var tag = "index.html"                      //default web
+var uname, message, messagetype, acc string //cookie
+var wg sync.WaitGroup                       //sync
+var userdb *gorm.DB                         //db
 
 func main() {
 	f, err := os.OpenFile("./config", os.O_RDONLY, 0600)

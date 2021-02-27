@@ -28,10 +28,14 @@ func runweb() {
 	//-----------------GET------------------
 	r.GET("/index", func(c *gin.Context) {
 		tag = "index.html"
+		message = "欢迎来到抗疫机器人在线管理系统！"
+		messagetype = "4"
 		geth(c)
 	})
 	r.GET("/home", func(c *gin.Context) {
 		tag = "home.html"
+		message = "欢迎来到控制台！"
+		messagetype = "1"
 		geth(c)
 	})
 	r.GET("/", func(c *gin.Context) {
@@ -40,6 +44,8 @@ func runweb() {
 	})
 	r.GET("/register", func(c *gin.Context) {
 		tag = "register.html"
+		message = "欢迎注册！！"
+		messagetype = "0"
 		geth(c)
 	})
 	r.GET("/bot2", bot1)
@@ -47,6 +53,8 @@ func runweb() {
 	r.GET("/logout", logout)
 	r.GET("/signin", func(c *gin.Context) {
 		tag = "signin.html"
+		message = "请登录账户！"
+		messagetype = "0"
 		geth(c)
 	})
 
@@ -81,15 +89,16 @@ func loadTemplates(templatesDir string) multitemplate.Renderer {
 
 func geth(c *gin.Context) {
 	c.HTML(http.StatusOK, tag, gin.H{
-		"message": "hi",
-		"uname":   uname,
+		"message":     message,
+		"uname":       uname,
+		"messagetype": messagetype,
 	})
 }
 func Checklogin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		uname, _ = c.Cookie("name")
 		if uname != "" {
-			uname = "欢迎：" + uname + " 点击进入控制台"
+			uname = " " + uname + " "
 		}
 		acc = "admin"
 		c.Next()

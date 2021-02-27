@@ -1,70 +1,90 @@
-<!DOCTYPE html>
-{%  %}
-<h1 class="center">{% 正在测试中！！ %}</h1>
-<link rel="stylesheet" href="static/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
-<link rel="stylesheet" href="layui/css/layui.css" type="text/css" media="screen" title="no title" charset="utf-8">
-<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<!DOCTYPE html style="height: 100%">
+
+<link
+	rel="stylesheet"
+	href="static/layui/css/layui.css"
+	type="text/css"
+	media="screen"
+	title="no title"
+	charset="utf-8"
+/>
+<script src="static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <html lang="zh-CN">
+	<head>
+		<title>{{block "title" .}}{{ end }}</title>
+		<style type="text/css" media="screen">
+			.center {
+				text-align: center;
+			}
 
-<head>
-    <title>{{block "title" .}}{{ end }}</title>
-    <style type="text/css" media="screen">
-        .center {
-            text-align: center;
-        }
+			.msize {
+				font-size:50px;
+			.right {
+				text-align: right;
+			}
+		</style>
+		<script type="text/javascript">
+			function sa() {
+				var Time = new Date();
+				document.getElementById("div").innerHTML = Time.toLocaleString();
+			}
+			window.setInterval("sa()", 1000);
+		</script>
+	</head>
 
-        .right {
-            text-align: right;
-        }
-    </style>
-    <script type="text/javascript">
-        function sa() {
-            var Time = new Date();
-            document.getElementById("div").innerHTML = Time.toLocaleString();
-        }
-        window.setInterval("sa()", 1000);
-    </script>
-</head>
+	<body>
+		<div class="layui-bg-green layui-row center" style="height: 8%">
+			<br />
+			<h1>抗疫机器人在线管理系统</h1>
+		</div>
+		<script charset="utf-8">
+			layui.use("element", function () {
+				var element = layui.element;
+			});
+			layui.use(["layer", "form"], function () {
+				var layer = layui.layer,
+					form = layui.form;
 
-<body>
-    <script charset="utf-8">
-        layui.use(['layer', 'form'], function() {
-            var layer = layui.layer,
-                form = layui.form;
-
-            layer.msg('Hello World');
-        });
-    </script>
-    <p>
-        <nav class="center">
-            {{block "header" .}}{{end}}
-            <ul>
-                <li><a href="/home" target="_top">{{.uname}}</a></li>
-                {{if .uname}}
-                <li><a href="/logout" target="_top">注销</a></li>
-                <li><a href="/" target="_top">回到主页</a></li>
-                {{else}}
-                    <li><a href="/register" target="_top">注册</a></li>
-                    <li><a href="/signin" target="_top">登录</a></li>
-                    <li><a href="/index" target="_top">回到主页</a></li>
-                    {{end}}
-            </ul>
-        </nav>
-        <section class="content">
-            <div class="container-fluid">{{block "content" . }}{{ end }}</div>
-            <div class="flash">
-                <ul>
-                    <li>药房机器人后台</li>
-                    <li>消毒机器人后台</li>
-                </ul>
-            </div>
-        </section>
-    </p>
-    <p>
-        <div id="div" class="right">
-        </div>
-    </p>
-
-</body>
-
+				layer.msg("{{.message}} ", {
+					time: 2000,
+					icon: {{.messagetype}},
+				});
+			});
+		</script>
+		<div class="layui-row center" style="height: 86%">
+			<div class="layui-col-md10 layui-col-md-offset1 layui-bg-gray center" style="height: 11%">
+				<nav>
+					<!-- {{block "header" .}}{{ end }} -->
+					<ul class="layui-nav" lay-filter="">
+						<li class="layui-nav-item">
+							<a href="/home" target="_top"><i class="layui-icon">&#xe612;</i> {{.uname}}</a>
+						</li>
+						{{if .uname}}
+						<li class="layui-nav-item"><a href="/logout" target="_top">注销</a></li>
+						<li class="layui-nav-item"><a href="/" target="_top">回到主页</a></li>
+						<li class="layui-nav-item"><a href="/home" target="_top">进入控制台</a></li>
+						<li class="layui-nav-item"><a href="/" target="_top">关于此项目</a></li>
+						{{else}}
+						<li class="layui-nav-item"><a href="/register" target="_top">注册</a></li>
+						<li class="layui-nav-item"><a href="/signin" target="_top">登录</a></li>
+						<li class="layui-nav-item"><a href="/index" target="_top">回到主页</a></li>
+						<li class="layui-nav-item"><a href="/home" target="_top">进入控制台</a></li>
+						<li class="layui-nav-item"><a href="/" target="_top">关于此项目</a></li>
+						{{
+							end
+						}}
+					</ul>
+				</nav>
+			</div>
+			<div class="layui-row" style="height: 89%">
+				<div class="layui-col-md10 layui-col-md-offset1 layui-bg-gray center">
+					<div class="container-fluid" style="height: 100%">{{block "content" . }}{{ end }}</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-bg-green layui-row" style="text-align: right; height: 6%">
+			<br />
+			<b>欢迎来到抗疫机器人在线管理系统 provided by -----xingji----- </b>
+		</div>
+	</body>
 </html>

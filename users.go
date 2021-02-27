@@ -17,7 +17,6 @@ func (u User) TableName() string {
 	return "users"
 }
 
-var cc = "欢迎！！"
 var sum [32]byte
 
 func register(c *gin.Context) {
@@ -29,7 +28,8 @@ func register(c *gin.Context) {
 	tag = "register.html"
 	userdb.Where("username = ?", login.Username).Take(&u)
 	if u.Username != "" {
-		cc = "该用户名已被注册！请重新注册！"
+		message = "该用户名已被注册！请重新注册！"
+		messagetype = "2"
 	} else {
 		sum = sha256.Sum256([]byte(login.Password))
 		login.Password = string(sum[:])
@@ -37,11 +37,12 @@ func register(c *gin.Context) {
 			fmt.Println("插入失败", err)
 			return
 		}
-		cc = "注册成功！ 请直接登录吧！"
+		message = "注册成功！ 请直接登录吧！"
+		messagetype = "1"
 		tag = "signin.html"
 	}
 	c.HTML(http.StatusOK, tag, gin.H{
-		"message": cc,
+		"message": message,
 		"m":       login.Password,
 		"c":       sum,
 	})
@@ -49,32 +50,35 @@ func register(c *gin.Context) {
 }
 func signin(c *gin.Context) {
 	var login, u User
-	var cc string
 	//从form输入绑定到login
 	if err := c.ShouldBind(&login); err == nil {
 		//绑定成功后先判断是否存在用户名
 		userdb.Where("username = ?", login.Username).Take(&u)
 		if u.Username == "" {
-			cc = "目标用户不存在，请自行注册！"
+			message = "目标用户不存在，请自行注册！"
+			messagetype = "2"
 			tag = "register.html"
 		} else {
 			sum = sha256.Sum256([]byte(login.Password))
 			if string(sum[:]) == u.Password {
-				cc = "登陆成功！"
+				message = "登陆成功！"
+				messagetype = "1"
 				tag = "home.html"
-				uname = "欢迎！ " + login.Username + "   "
+				uname = " " + login.Username + " "
 				c.SetCookie("name", login.Username, 1000, "/", myurl, false, true)
 				c.SetCookie("acc", "admin", 1000, "/", myurl, false, true)
 			} else {
-				cc = "密码错误！"
+				message = "密码错误！"
+				messagetype = "3"
 				tag = "signin.html"
 			}
 		}
 		c.HTML(http.StatusOK, tag, gin.H{
-			"uname":   uname,
-			"message": cc,
-			"m":       login.Password,
-			"c":       sum,
+			"uname":       uname,
+			"message":     message,
+			"messagetype": messagetype,
+			"m":           login.Password,
+			"c":           sum,
 		})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -85,6 +89,6 @@ func logout(c *gin.Context) {
 	c.SetCookie("name", "Shimin Li", -1, "/", myurl, false, true)
 	c.SetCookie("acc", "Shimin Li", -1, "/", myurl, false, true)
 	c.HTML(http.StatusOK, "index.html", gin.H{
-		"message": cc,
+		"message": message,
 	})
 }
