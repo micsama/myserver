@@ -23,6 +23,7 @@ func initlisten() {
 		fmt.Println("--------Load Successed!--------\nListening at ", ip)
 	}
 	for {
+		fmt.Println("^_^")
 		// 2.等待客户端连接
 		client_conn, err := linser.Accept()
 		if err != nil {
