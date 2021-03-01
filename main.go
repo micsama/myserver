@@ -5,12 +5,12 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"io"
-	"os"
+	_ "io"
+	_ "os"
 	"sync"
 )
 
-var testing bool
+var testing bool = true
 
 var datebase = "data/date.db"
 var myurl string
@@ -20,15 +20,15 @@ var wg sync.WaitGroup                       //sync
 var userdb *gorm.DB                         //db
 
 func main() {
-	f, err := os.OpenFile("./config", os.O_RDONLY, 0600)
-	defer f.Close()
-	if err != nil {
-		fmt.Println(err.Error())
-		testing = false
-	} else {
-		_, _ = io.ReadAll(f)
-		testing = true
-	}
+	// f, err := os.OpenFile("./config", os.O_RDONLY, 0600)
+	// defer f.Close()
+	// if err != nil {
+	// 	fmt.Println(err.Error())
+	// 	testing = false
+	// } else {
+	// 	_, _ = io.ReadAll(f)
+	// 	testing = true
+	// }
 	if testing {
 		myurl = "localhost"
 	} else {

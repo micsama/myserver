@@ -89,6 +89,6 @@ func logout(c *gin.Context) {
 	c.SetCookie("name", "Shimin Li", -1, "/", "", false, true)
 	c.SetCookie("acc", "Shimin Li", -1, "/", "", false, true)
 	c.HTML(http.StatusOK, "index.html", gin.H{
-		"message": message,
+		"message": "注销成功！",
 	})
 }
