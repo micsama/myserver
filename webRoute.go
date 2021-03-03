@@ -40,12 +40,20 @@ func runweb() {
 	})
 	r.GET("/", func(c *gin.Context) {
 		tag = "index.html"
+		message = "欢迎来到抗疫机器人在线管理系统！"
+		messagetype = "1"
 		geth(c)
 	})
 	r.GET("/register", func(c *gin.Context) {
 		tag = "register.html"
 		message = "欢迎注册！！"
 		messagetype = "0"
+		geth(c)
+	})
+	r.GET("/about", func(c *gin.Context) {
+		tag = "about.html"
+		message = "111"
+		messagetype = ""
 		geth(c)
 	})
 	r.GET("/bot2", bot1)
@@ -100,6 +108,8 @@ func Checklogin() gin.HandlerFunc {
 		if uname != "" {
 			uname = " " + uname + " "
 		}
+		message = "请登录账户！"
+		messagetype = "4"
 		acc = "admin"
 		c.Next()
 	}

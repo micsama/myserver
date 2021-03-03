@@ -11,9 +11,9 @@
 <div class="center">
 	<h1>Register</h1>
 </div>
-		<div class="layui-col-md4  layui-col-md-offset4">
+		<div class="layui-col-md4  layui-col-md-offset4 layui-col-xs6  layui-col-xs-offset3 center">
 			<br></br>
-			<form class="layui-form layui-form-pane" action="/register" method="POST">
+			<form class="layui-form layui-form-pane" style="font-size:normal" action="/register" method="POST">
 				<div class="layui-form-item">
 					<label class="layui-form-label" for="username">用户名：</label>
 					<div class="layui-input-inline">
@@ -22,10 +22,9 @@
 							type="text"
 							lay-verify="required"
 							placeholder="请输入用户名"
-							autocomplete="username"
 							name="username"
 							id="username"
-							required
+					required
 						/>
 					</div>
 				</div>
@@ -37,7 +36,6 @@
 							type="password"
 							name="password"
 							id="password"
-							autocomplete="new-password"
 							lay-verify="required"
 							placeholder="请输入密码"
 							required

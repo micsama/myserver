@@ -1,28 +1,25 @@
 <!DOCTYPE html style="height: 100%">
 
+<!-- <script src="static/myjs.js" type="text/javascript" charset="utf&#45;8"></script> -->
+<link rel="stylesheet" href="static/mystyle.css" type="text/css" media="screen" charset="utf-8" />
 <link
 	rel="stylesheet"
 	href="static/layui/css/layui.css"
 	type="text/css"
 	media="screen"
-	title="no title"
+	charset="utf-8"
+/>
+<link
+	rel="stylesheet"
+	href="static/layui/css/layui.mobile.css"
+	type="text/css"
+	media="screen"
 	charset="utf-8"
 />
 <script src="static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <html lang="zh-CN">
 	<head>
 		<title>{{block "title" .}}{{ end }}</title>
-		<style type="text/css" media="screen">
-			.center {
-				text-align: center;
-			}
-
-			.msize {
-				font-size:50px;
-			.right {
-				text-align: right;
-			}
-		</style>
 		<script type="text/javascript">
 			function sa() {
 				var Time = new Date();
@@ -33,10 +30,12 @@
 	</head>
 
 	<body>
-		<div class="layui-bg-green layui-row center" style="height: 8%">
-			<br />
-			<h1>抗疫机器人在线管理系统</h1>
+		<div class="layui-bg-green layui-row center" style="height: 6%">
+			<div style="line-height: 46px">
+				<h1 >抗疫机器人在线管理系统</h1>
+			</div>
 		</div>
+		<p style="font-size:12rem;">213131</p>
 		<script charset="utf-8">
 			layui.use("element", function () {
 				var element = layui.element;
@@ -45,45 +44,61 @@
 				var layer = layui.layer,
 					form = layui.form;
 
+			{{if  .messagetype   }}
 				layer.msg("{{.message}} ", {
 					time: 2000,
 					icon: {{.messagetype}},
 				});
+			{{end}}
 			});
 		</script>
-		<div class="layui-row center" style="height: 86%">
-			<div class="layui-col-md10 layui-col-md-offset1 layui-bg-gray center" style="height: 11%">
-				<nav>
-					<!-- {{block "header" .}}{{ end }} -->
-					<ul class="layui-nav" lay-filter="">
-						{{if .uname}}
-						<li class="layui-nav-item">
-							<a href="/home" target="_top"><i class="layui-icon">&#xe612;</i> {{.uname}}</a>
-						</li>
-						<li class="layui-nav-item"><a href="/logout" target="_top">注销</a></li>
-						<li class="layui-nav-item"><a href="/" target="_top">回到主页</a></li>
-						<li class="layui-nav-item"><a href="/home" target="_top">进入控制台</a></li>
-						<li class="layui-nav-item"><a href="/" target="_top">关于此项目</a></li>
-						{{else}}
-						<li class="layui-nav-item"><a href="/register" target="_top">注册</a></li>
-						<li class="layui-nav-item"><a href="/signin" target="_top">登录</a></li>
-						<li class="layui-nav-item"><a href="/index" target="_top">回到主页</a></li>
-						<li class="layui-nav-item"><a href="/" target="_top">关于此项目</a></li>
-						{{
-							end
-						}}
-					</ul>
-				</nav>
-			</div>
-			<div class="layui-row" style="height: 89%">
-				<div class="layui-col-md10 layui-col-md-offset1 layui-bg-gray center">
-					<div class="container-fluid" style="height: 100%">{{block "content" . }}{{ end }}</div>
+		<div class="layui-row" style="height: auto">
+			<div
+				class="layui-col-md10 layui-col-xs12 layui-col-md-offset1 layui-bg-gray"
+				style="height: 11%"
+			>
+				<div class="layui-row layui-bg-black">
+					<div class="layui-col-md6 layui-col-xs6 center">
+						<a href="http://jc.nuaa.edu.cn/" target="_blank">
+							<img src="/static/pic/jcxyicon.jpg" alt="" height="60px" />
+						</a>
+					</div>
+					<div class="layui-col-md6 layui-col-xs6">
+						<nav>
+							<!-- {{block "header" .}}{{ end }} -->
+							<ul class="layui-nav" lay-filter="">
+								{{if .uname}}
+								<li class="layui-nav-item">
+									<a href="/home" target="_top"><i class="layui-icon">&#xe612;</i> {{.uname}}</a>
+								</li>
+								<li class="layui-nav-item"><a href="/logout" target="_top">注销</a></li>
+								<li class="layui-nav-item"><a href="/" target="_top">回到主页</a></li>
+								<li class="layui-nav-item"><a href="/home" target="_top">进入控制台</a></li>
+								<li class="layui-nav-item"><a href="/about" target="_top">关于此项目</a></li>
+								{{else}}
+								<li class="layui-nav-item"><a href="/register" target="_top">注册</a></li>
+								<li class="layui-nav-item"><a href="/signin" target="_top">登录</a></li>
+								<li class="layui-nav-item"><a href="/index" target="_top">回到主页</a></li>
+								<li class="layui-nav-item"><a href="/about" target="_top">关于此项目</a></li>
+								{{
+									end
+								}}
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="layui-bg-green layui-row" style="text-align: right; height: 6%">
-			<br />
-			<b>欢迎来到抗疫机器人在线管理系统 provided by -----xingji----- </b>
+			<div class="layui-row" style="height: auto">
+				<div class="layui-col-md10 layui-col-md-offset1 layui-col-xs12 layui-bg-gray">
+					<div class="container-fluid" style="height: 100%">{{block "content" . }}{{ end }}</div>
+					<div class="layui-bg-green" style="text-align: right; height: auto">
+						<br></br>
+						<br></br>
+						<b>欢迎来到抗疫机器人在线管理系统 provided by -----xingji----- </b>
+						<br></br>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,54 @@
+@charset "utf-8";
+ul {
+	right: 0px;
+	padding: 10px;
+	position: absolute;
+}
+hr {
+	margin: auto;
+}
+.ptext {
+	line-height: 30px;
+	font-size: 20px;
+	text-indent: 2em;
+}
+
+.center {
+	text-align: center;
+}
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	list-style: none;
+	outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 1.5rem;
+	padding: 0 2em 0 1em;
+}
+
+img {
+	border: none;
+	margin: 0;
+	padding: 0;
+	vertical-align: bottom;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+	-webkit-appearance: none;
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+	color: #808080;
+}

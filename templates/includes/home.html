@@ -9,16 +9,27 @@
 {{define "content"}}
 
 {{if .uname}}
-<div>欢迎来到我的控制台</div>
-<a href="/bot1" target="_top">
-	<img
-		src="http://e0.ifengimg.com/04/2019/0201/858D15BF94432706808480AAA0B6EE29D561468E_size33_w600_h375.jpeg"
-		alt=""
-	/>
-</a>
-<a href="/bot2" target="_top">
-	<img src="https://2c.zol-img.com.cn/product/193_320x240/22/ce1M3cBEOgN1w.jpg" alt="" />
-</a>
+<p class="center">抗疫机器人控制台</p>
+
+<hr class="layui-bg-green center" style="width: 90%" />
+<div class="layui-row">
+	<div class="layui-col-md5 layui-col-md-offset1">
+		<fieldset class="" style="height: 80%">
+			<legend><h2 >消毒机器人Status</h3></legend>
+			<div class="layui-field-box">
+				<p style="font-size: 17px">状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+			</div>
+		</fieldset>
+	</div>
+	<div class="layui-col-md5">
+		<fieldset class="" style="height: 80%">
+			<legend><h2>药房管理机器人Status</h2></legend>
+			<div class="layui-field-box">
+				<p style="font-size: 17px">状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+			</div>
+		</fieldset>
+	</div>
+</div>
 
 {{ end }}
 
