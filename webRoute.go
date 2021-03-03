@@ -107,9 +107,10 @@ func Checklogin() gin.HandlerFunc {
 		uname, _ = c.Cookie("name")
 		if uname != "" {
 			uname = " " + uname + " "
+		} else {
+			message = "请登录账户！"
+			messagetype = "4"
 		}
-		message = "请登录账户！"
-		messagetype = "4"
 		acc = "admin"
 		c.Next()
 	}
