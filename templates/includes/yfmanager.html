@@ -1,0 +1,39 @@
+{{template "base.html" . }}
+{{define "title"}}
+药房机器人管理中心
+{{ end }}
+{{define "header"}}
+<h1>药房机器人管理中心</h1>
+{{ end }}
+{{define "content"}}
+<div class="layui-row" style="padding-top: 0.5rem">
+	<div class="layui-col-md10 layui-col-md-offset1">
+		<table id="demo" lay-filter="test"></table>
+	</div>
+</div>
+
+<script>
+	layui.use("table", function () {
+		var table = layui.table;
+		table.render({
+			even: true,
+			toolbar: "default",
+			elem: "#demo",
+			limit: 15,
+			height: 612,
+			url: "/yfdata/",
+			page: true,
+			loading: true,
+			title: "药房信息表",
+			cols: [
+				[
+					{ field: "Id", title: "ID", type: "number", sort: true, fixed: "left" },
+					{ field: "Name", title: "药品名称", sort: true, fixed: "left" },
+					{ field: "Count", title: "药品存量", sort: true },
+					{ field: "Otherinf", title: "药品其他信息", sort: true, style: "text" },
+				],
+			],
+		});
+	});
+</script>
+{{ end }}

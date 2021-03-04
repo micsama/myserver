@@ -9,12 +9,8 @@ import (
 )
 
 type User struct {
-	Username string `gorm:"column:username" form:"username"`
-	Password string `gorm:"column:password" form:"password"`
-}
-
-func (u User) TableName() string {
-	return "users"
+	Username string ` form:"username"`
+	Password string ` form:"password"`
 }
 
 var sum [32]byte
@@ -66,7 +62,7 @@ func signin(c *gin.Context) {
 				tag = "home.html"
 				uname = " " + login.Username + " "
 				c.SetCookie("name", login.Username, 3600, "/", "", false, true)
-				c.SetCookie("acc", "admin", 3600, "/", myurl, false, true)
+				c.SetCookie("acc", "admin", 3600, "/", "", false, true)
 			} else {
 				message = "密码错误！"
 				messagetype = "3"

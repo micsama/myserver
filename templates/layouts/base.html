@@ -1,16 +1,23 @@
 <!DOCTYPE html style="height: 100%">
 
-<link
-	rel="stylesheet"
-	href="static/layui/css/layui.css"
-	type="text/css"
-	media="screen"
-	charset="utf-8"
-/>
-<link rel="stylesheet" href="static/mystyle.css" type="text/css" media="screen" charset="utf-8" />
-<script src="static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <html lang="zh-CN">
 	<head>
+		<link
+			rel="stylesheet"
+			href="static/layui/css/layui.css"
+			type="text/css"
+			media="all"
+			charset="utf-8"
+		/>
+		<link
+			rel="stylesheet"
+			href="static/mystyle.css"
+			type="text/css"
+			media="screen"
+			charset="utf-8"
+		/>
+		<script src="static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
 		<meta
 			name="viewport"
 			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
@@ -38,7 +45,8 @@
 			{{end}}
 			});
 		</script>
-		<div class="layui-row" style="height: auto">
+		<!-- <div class="layui&#45;row" style="height: auto"> -->
+		<div class="layui-row">
 			<div
 				class="layui-col-md10 layui-col-xs12 layui-col-md-offset1 layui-bg-gray"
 				style="height: 3.8rem"
@@ -73,7 +81,7 @@
 			</div>
 			<div class="layui-row" style="height: auto">
 				<div class="layui-col-md10 layui-col-md-offset1 layui-col-xs12 layui-bg-gray">
-					<div class="container-fluid" style="height: 100%">{{block "content" . }}{{ end }}</div>
+					<div class="container-fluid" style="height: auto">{{block "content" . }}{{ end }}</div>
 				</div>
 			</div>
 		</div>

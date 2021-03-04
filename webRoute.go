@@ -32,6 +32,7 @@ func runweb() {
 		messagetype = "4"
 		geth(c)
 	})
+	r.GET("/yfdata", yfdata)
 	r.GET("/home", func(c *gin.Context) {
 		tag = "home.html"
 		message = "欢迎来到控制台！"
@@ -56,8 +57,8 @@ func runweb() {
 		messagetype = ""
 		geth(c)
 	})
-	r.GET("/bot2", bot1)
-	r.GET("/bot1", bot2)
+	r.GET("/xdlog", xdlog)
+	r.GET("/yfmanager", yfmanager)
 	r.GET("/logout", logout)
 	r.GET("/signin", func(c *gin.Context) {
 		tag = "signin.html"
@@ -116,34 +117,53 @@ func Checklogin() gin.HandlerFunc {
 	}
 }
 
-func bot1(c *gin.Context) {
+func xdlog(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
 	if acc == "admin" {
-		c.HTML(http.StatusOK, "bot2.html", gin.H{
+		c.HTML(http.StatusOK, "xdlog.html", gin.H{
 			"message":     "欢迎！",
 			"messagetype": "1",
 			"uname":       uname,
 		})
 	} else {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"message":     "您的权限不足！",
+			"message":     "您的权限不足！正在返回首页！",
 			"messagetype": "4",
 			"uname":       uname,
 		})
 	}
 }
 
-func bot2(c *gin.Context) {
+func yfdata(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
 	if acc == "admin" {
-		c.HTML(http.StatusOK, "bot2.html", gin.H{
+		refreshyfdata()
+		c.JSON(http.StatusOK, gin.H{
+			"code":  0,
+			"msg":   "",
+			"count": yfcount,
+			"data":  yfdatamap,
+		})
+	} else {
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"message":     "您的权限不足！正在返回首页！",
+			"messagetype": "4",
+			"uname":       uname,
+		})
+	}
+
+}
+func yfmanager(c *gin.Context) {
+	acc, _ = c.Cookie("acc")
+	if acc == "admin" {
+		c.HTML(http.StatusOK, "yfmanager.html", gin.H{
 			"message":     "欢迎！",
 			"messagetype": "1",
 			"uname":       uname,
 		})
 	} else {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"message":     "您的权限不足！",
+			"message":     "您的权限不足！正在返回首页！",
 			"messagetype": "4",
 			"uname":       uname,
 		})

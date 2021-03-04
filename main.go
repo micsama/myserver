@@ -12,7 +12,8 @@ import (
 
 var testing bool = true
 
-var datebase = "data/date.db"
+var tablename = "users"
+var database = "data/data.db"
 var myurl string
 var tag = "index.html"                      //default web
 var uname, message, messagetype, acc string //cookie
@@ -20,15 +21,6 @@ var wg sync.WaitGroup                       //sync
 var userdb *gorm.DB                         //db
 
 func main() {
-	// f, err := os.OpenFile("./config", os.O_RDONLY, 0600)
-	// defer f.Close()
-	// if err != nil {
-	// 	fmt.Println(err.Error())
-	// 	testing = false
-	// } else {
-	// 	_, _ = io.ReadAll(f)
-	// 	testing = true
-	// }
 	if testing {
 		myurl = "localhost"
 	} else {
@@ -44,7 +36,7 @@ func initsql() {
 	var dberr error
 	if testing {
 		fmt.Println("testokookkkk")
-		userdb, dberr = gorm.Open("sqlite3", datebase)
+		userdb, dberr = gorm.Open("sqlite3", database)
 	} else {
 		fmt.Println("t----------111est")
 		userdb, dberr = gorm.Open("mysql", "sql_www.dzmfg:XaFrbPKEh65t6JGd@(127.0.0.1:3306)/sql_www.dzmfg?charset=utf8&parseTime=True&loc=Local")
@@ -55,4 +47,7 @@ func initsql() {
 		fmt.Println("success")
 	}
 	wg.Done()
+}
+func (u User) TableName() string {
+	return tablename
 }

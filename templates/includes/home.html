@@ -9,23 +9,29 @@
 {{define "content"}}
 
 {{if .uname}}
-<p class="center">抗疫机器人控制台</p>
-
-<hr class="layui-bg-green center" style="width: 90%" />
+<h2 class="center" style="line-height:3rem">抗疫机器人控制台</h2>
+<hr class="layui-bg-green center" style="width: 90%;height: 2px;" />
+<br>
 <div class="layui-row">
 	<div class="layui-col-md5 layui-col-md-offset1">
 		<fieldset class="" style="height: 80%">
-			<legend><h2 >消毒机器人Status</h3></legend>
+			<legend><h2 style="padding: 0, 2rem, 0, 2rem;" >&nbsp;&nbsp;消毒机器人Status&nbsp;&nbsp;</h2></legend>
 			<div class="layui-field-box">
-				<p style="font-size: 17px">状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+				<p >状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+			
 			</div>
 		</fieldset>
 	</div>
 	<div class="layui-col-md5">
 		<fieldset class="" style="height: 80%">
-			<legend><h2>药房管理机器人Status</h2></legend>
+			<legend><h2>&nbsp;&nbsp;药房管理机器人Status&nbsp;&nbsp;</h2></legend>
 			<div class="layui-field-box">
-				<p style="font-size: 17px">状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+				<p >状态：正常 药物库存短缺情况：无 <br />药物需求情况：正常</p>
+				<br></br>
+				<div style="padding-left:4rem">
+					
+				<a href="/yfmanager" target="_top" class="layui-btn" >管理药房</a>
+				</div>
 			</div>
 		</fieldset>
 	</div>
