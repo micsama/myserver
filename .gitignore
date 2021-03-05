@@ -2,5 +2,8 @@
 *.so
 *.exe
 /tmp
+/tmp/*
 server
+/static/layui/
+/static/layui/*
 config
