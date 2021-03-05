@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>哎呀，页面走丢了</title>
-	</head>
-	<body>
-		很抱歉您访问的页面暂时还没做
-	</body>
-</html>
+{{template "base.html" . }}
+{{define "title"}}
+我的控制台
+{{ end }}
+{{define "header"}}
+<h1>控制台</h1>
+{{ end }}
+
+{{define "content"}}
+<h1 class="center">肥肠抱歉，本页面不存在,您可以通过导航条访问本网站</h1>
+{{ end }}
