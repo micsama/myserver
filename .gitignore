@@ -6,4 +6,5 @@
 server
 /static/layui/
 /static/layui/*
+nohup.out
 config

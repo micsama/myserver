@@ -35,13 +35,6 @@ func initsql() {
 	wg.Add(1)
 	var dberr error
 	userdb, dberr = gorm.Open("sqlite3", database)
-	// if testing {
-	// 	fmt.Println("testokookkkk")
-	// 	userdb, dberr = gorm.Open("sqlite3", database)
-	// } else {
-	// 	fmt.Println("t----------111est")
-	// 	userdb, dberr = gorm.Open("mysql", "sql_www.dzmfg:XaFrbPKEh65t6JGd@(127.0.0.1:3306)/sql_www.dzmfg?charset=utf8&parseTime=True&loc=Local")
-	// }
 	if dberr != nil {
 		fmt.Println(dberr)
 	} else {
