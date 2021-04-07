@@ -1,4 +1,11 @@
 @charset "utf-8";
+body {
+	background-image: url("/static/pic/background.jpeg");
+	background-attachment: fixed;
+	background-position: 100%, 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 ul {
 	right: 0px;
 	padding: 10px;
@@ -6,6 +13,10 @@ ul {
 }
 hr {
 	margin: auto;
+}
+.yekong {
+	background-image: url("/static/pic/yekong.jpeg");
+	background-size: 100% 100%;
 }
 .ptext {
 	line-height: 30px;

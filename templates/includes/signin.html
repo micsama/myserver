@@ -6,48 +6,50 @@
 <h1>请登录：</h1>
 {{ end }}
 {{define "content"}}
-<div class="layui-container">
 <div class="center">
-	<h1>Signin</h1>
+    <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
 </div>
-	<div class="layui-row">
-		<div class="layui-col-md4  layui-col-md-offset4 layui-col-xs10  layui-col-xs-offset1 center">
-			<br></br>
-			<form class="layui-form layui-form-pane" action="/signin" method="POST">
-				<div class="layui-form-item">
-					<label class="layui-form-label" for="username">用户名：</label>
-					<div class="layui-input-inline">
-						<input
-							class="layui-input"
-							type="text"
-							lay-verify="required"
-							placeholder="请输入用户名"
-							name="username"
-							id="username"
-							required
-						/>
-					</div>
-				</div>
-				<br>
-				<div class="layui-form-item">
-					<label class="layui-form-label" for="password">密码：</label>
-					<div class="layui-input-inline">
-						<input
-							class="layui-input"
-							type="password"
-							name="password"
-							id="password"
-							lay-verify="required"
-							placeholder="请输入密码"
-							required
-						/>
-					</div>
-				</div>
-				<br>
-				<button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"  ><i class="layui-icon">&#xe609;</i> 立即登录！！</button>
-				<br></br>
-			</form>
-		</div>
-	</div>
+<div class="layui-container yekong" style="height:100%;width:100%">
+    <div class="center">
+        <div style="height:2rem">
+
+        </div>
+    </div>
+    <div class="layui-row ">
+        <div class="layui-col-md2 layui-col-xs1">
+            <img src="/static/pic/left1.png" alt="" style="height:auto">
+        </div>
+        <div class="layui-col-md8    layui-col-xs10   ">
+            <div class="center">
+                <img src="/static/pic/xiong.png" alt="">
+            </div>
+            <div style="width:30% ;background-color:red;display:inline-block">
+            </div>
+            <div class="center" style="margin:0 auto;width:50% ;display:inline-block">
+                <form class="layui-form layui-form-pane center " action="/signin" method="POST">
+                    <br></br>
+                    <div class="layui-form-item ">
+                        <label class="layui-form-label" for="username">用户名：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" lay-verify="required" placeholder="请输入用户名" name="username" id="username" required />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="password">密码：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="password" name="password" id="password" lay-verify="required" placeholder="请输入密码" required />
+                        </div>
+                    </div>
+                    <br>
+                    <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe609;</i> 立即登录！！</button>
+                    <br></br>
+                </form>
+            </div>
+        </div>
+        <div class="layui-col-md2 layui-col-xs1">
+            <img src="/static/pic/right1.png" alt="" style="height:auto">
+        </div>
+    </div>
 </div>
 {{ end }}
