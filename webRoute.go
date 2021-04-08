@@ -57,6 +57,14 @@ func runweb() {
 		messagetype = ""
 		geth(c)
 	})
+	r.GET("/shijian", func(c *gin.Context) {
+		tag = "shijian.html"
+		message = "111"
+		messagetype = ""
+		geth(c)
+	})
+	r.GET("/chengshi", chengshi)
+	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfmanager", yfmanager)
 	r.GET("/logout", logout)
@@ -168,4 +176,19 @@ func yfmanager(c *gin.Context) {
 			"uname":       uname,
 		})
 	}
+}
+func dashuju(c *gin.Context) {
+	initjson()
+	c.HTML(http.StatusOK, "dashuju.html", gin.H{
+		"message":     "欢迎！",
+		"messagetype": "1",
+		"uname":       uname,
+	})
+}
+func chengshi(c *gin.Context) {
+	c.HTML(http.StatusOK, "chengshi.html", gin.H{
+		"message":     "欢迎！",
+		"messagetype": "1",
+		"uname":       uname,
+	})
 }

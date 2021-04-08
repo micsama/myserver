@@ -12,12 +12,12 @@
     <title>{{block "title" .}}{{ end }}</title>
 </head>
 
-<body>
+<body style="height:100%">
     <script charset="utf-8">
         layui.use("element", function() {
             var element = layui.element;
         });
-		layui.use(["layer", "form"], function() {
+        layui.use(["layer", "form"], function() {
             var layer = layui.layer,
                 form = layui.form; {
                 {
@@ -46,7 +46,7 @@
                     <div style="height: 0.1rem"></div>
                     <a href="http://jc.nuaa.edu.cn/" target="_blank">
                         <img src="/static/pic/jcxyicon.png" alt="" height="100%" />
-                        <b class="center" style="color: white; line-height=3.8rem;font-size: 2.2rem">欢迎来到抗议机器人管理系统</b>
+                        <b class="center" style="color: white; line-height=3.8rem;font-size: 2.2rem">欢迎来到抗疫机器人管理系统</b>
                     </a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs10">
@@ -62,6 +62,15 @@
                             </li>
                             <li class="layui-nav-item">
                                 <a href="/" target="_top">回到主页</a>
+                            </li>
+                            <li class="layui-nav-item">
+                                <a href="/shijian" target="_top">新冠大事件</a>
+                            </li>
+                            <li class="layui-nav-item">
+                                <a href="/chengshi" target="_top">城市信息</a>
+                            </li>
+                            <li class="layui-nav-item">
+                                <a href="/dashuju" target="_top">新冠数据</a>
                             </li>
                             {{else}}
                                 <li class="layui-nav-item">
@@ -83,7 +92,7 @@
         </div>
         <div class="layui-row" style="height: auto">
             <div class="layui-col-md8 layui-col-md-offset2 layui-col-xs12 layui-bg-gray">
-                <div class="container-fluid" style="height: 100%">{{block "content" . }}{{ end }}</div>
+                <div class="container-fluid" style="height: auto">{{block "content" . }}{{ end }}</div>
             </div>
         </div>
     </div>
