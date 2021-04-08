@@ -1,4 +1,3 @@
-
 {{template "base.html" . }}
 {{define "title"}}
 疫情大数据
@@ -8,7 +7,30 @@
 {{ end }}
 
 {{define "content"}}
-13
+<h2 class="center">新冠信息实时获取</h2>
+<div class="layui-row">
+    <div class="layui-col-md5">
+<img src="/static/pic/ditu.png" alt="">
+    </div>
+
+<div class=" center yekong layui-col-md7" style="font-size: 1.3rem;">
+
+    <blockquote class="layui-elem-quote">
+        <i class="layui-icon layui-icon-log" style="font-size: 1.2rem;"></i> {{.data}}
+        <br></br>
+        <br></br>
+        <i class="layui-icon layui-icon-group" style="font-size: 1.2rem;"></i> 中国总计感染人数 ： {{.gntotal}}
+        <br></br>
+        <br></br>
+        <i class="layui-icon layui-icon-close-fill" style="font-size: 1.2rem;"></i> 中国总死亡人数 ： {{.deathtotal}}
+        <br></br>
+        <br></br>
+        <i class="layui-icon layui-icon-face-smile-b" style="font-size: 1.2rem;"></i> 中国总治愈人数 : {{.curetotal}}
+</div>
+</div>
+
+<h4 style="font-size:1rem">数据来自新浪网 数据接口：https://interface.sina.cn/news/wap/fymap2020_data.d.json 每天更新</h4>
+</blockquote>
 
 
 {{ end }}

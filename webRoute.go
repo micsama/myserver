@@ -178,11 +178,15 @@ func yfmanager(c *gin.Context) {
 	}
 }
 func dashuju(c *gin.Context) {
-	initjson()
+	a := initjson()
 	c.HTML(http.StatusOK, "dashuju.html", gin.H{
 		"message":     "欢迎！",
 		"messagetype": "1",
 		"uname":       uname,
+		"data":        a.Data,
+		"gntotal":     a.Gntotal,
+		"deathtotal":  a.Deathtotal,
+		"curetotal":   a.Curetotal,
 	})
 }
 func chengshi(c *gin.Context) {
