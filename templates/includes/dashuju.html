@@ -7,6 +7,12 @@
 {{ end }}
 
 {{define "content"}}
+    <b style="color:green">
+        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+        <script type="text/javascript">
+            document.write(returnCitySN["cname"])
+        </script>
+    </b>
 
 <div class="center">
     <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
@@ -81,11 +87,15 @@
                     </div>
                 </div>
             </div>
-            <div style="height:3.5rem">
+            <div style="height:1.5rem">
             </div>
         </div>
     </div>
-
+	<div class="layui-row">
+	<div class="center">
+		{{.mycity}} 疫情数据
+	</div>	
+	</div>
 </div>
 <div class="layui-row layui-bg-gray" style="height: 1.5rem;">
 </div>

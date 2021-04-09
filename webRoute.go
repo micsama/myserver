@@ -12,6 +12,7 @@ import (
 )
 
 var Words []rune
+var Thecity = "北京"
 
 func runweb() {
 	wg.Add(1)
@@ -69,7 +70,6 @@ func runweb() {
 		geth(c)
 	})
 	r.GET("/dashujure", dashujure)
-	// r.GET("/chengshi", chengshi)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfmanager", yfmanager)
@@ -82,8 +82,7 @@ func runweb() {
 	})
 
 	//--------------------POST------------------
-	r.GET("/chengshi", mycity)
-	r.POST("/chengshi", mycity)
+	r.POST("/dashuju", mycity)
 	r.POST("/register", register)
 	r.POST("/signin", signin)
 
@@ -217,37 +216,19 @@ func dashuju(c *gin.Context) {
 		"econNum":     a.Econnum,
 	})
 }
-func chengshi(c *gin.Context) {
-	c.HTML(http.StatusOK, "chengshi.html", gin.H{
-		"message":     "欢迎！",
-		"messagetype": "1",
-		"uname":       uname,
-	})
-}
 
 func mycity(c *gin.Context) {
-	thecity := c.Query("mycity")
-	Words = ([]rune)(thecity)
-	fmt.Println(thecity, "-----")
-	l := len(Words)
+	Thecity = c.Query("mycity")
+	Words = ([]rune)(Thecity)
+	fmt.Println(Thecity, "-----")
 
 	for i, c := range Words {
 		fmt.Println("--> ", c)
 		if c == 30465 || c == 24066 { //江苏“省”南京“市”的“省”和“市”字的编码
-			if i == l-1 {
-				Words = Words[:i]
-				break
-			} else {
-				Words = Words[i+1 : l-1]
-			}
+			Words = Words[:i]
+			break
 		}
 	}
 	fmt.Println(Words, "-----")
-	thecity = string(Words)
-	c.HTML(http.StatusOK, "chengshi.html", gin.H{
-		"message":     "huanying",
-		"messagetype": "1",
-		"thecity":     thecity,
-		"uname":       uname,
-	})
+	Thecity = string(Words)
 }
