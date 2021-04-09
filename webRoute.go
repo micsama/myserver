@@ -186,23 +186,12 @@ func yfmanager(c *gin.Context) {
 }
 func dashujure(c *gin.Context) {
 	getjson()
+	dashuju(c)
 
-	a := initjson()
-	c.HTML(http.StatusOK, "dashuju.html", gin.H{
-		"message":     "今日速报！",
-		"messagetype": "0",
-		"uname":       uname,
-		"data":        a.Data,
-		"gntotal":     a.Gntotal,
-		"deathtotal":  a.Deathtotal,
-		"curetotal":   a.Curetotal,
-		"jwsrNum":     a.Jwsr,
-		"wzz":         a.Wzz,
-		"econNum":     a.Econnum,
-	})
 }
 func dashuju(c *gin.Context) {
 	a := initjson()
+
 	c.HTML(http.StatusOK, "dashuju.html", gin.H{
 		"message":     "今日速报！",
 		"messagetype": "0",
@@ -214,6 +203,11 @@ func dashuju(c *gin.Context) {
 		"jwsrNum":     a.Jwsr,
 		"wzz":         a.Wzz,
 		"econNum":     a.Econnum,
+		"mycity":      Thecity,
+		"myvalue":     a.Myvalue,
+		"mydeathnum":  a.Mydeathnum,
+		"mycurenum":   a.Mycurenum,
+		"myzerodays":  a.Myzerodays,
 	})
 }
 

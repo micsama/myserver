@@ -7,100 +7,141 @@
 {{ end }}
 
 {{define "content"}}
-    <b style="color:green">
-        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
-        <script type="text/javascript">
-            document.write(returnCitySN["cname"])
-        </script>
-    </b>
-
 <div class="center">
     <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
 
-					<div style="font-size: 3rem;">
-						截至{{.data}}
-					</div>
+    <div style="font-size: 3rem;">
+        截至{{.data}}
+    </div>
 </div>
 <div class="layui-row">
     <div class="layui-col-md10 layui-col-md-offset1 yekong" style=" border-radius:20px;">
         <div class="layui-row">
             <div class="layui-row">
                 <div class="layui-row layui-col-space30">
-                    <div style="height:3rem">
+                    <div class="center" style="font-size: 2.5rem;height:3rem;color: white;">
+                        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+                        <script type="text/javascript">
+                            var mycity = returnCitySN["cname"]
+
+                            function test() {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "/dashuju?mycity=" + mycity,
+                                })
+                            }
+                            test()
+                        </script>
+                        全国疫情数据
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset2">
-                      <div class="center xiaobiaoti">
-                      	 境外输入
-						 <div style="font-size: 2.5rem; color: #ff9b52;">
-							 {{.jwsrNum}}
-						 </div>
-						 	
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            境外输入
+                            <div style="font-size: 2.5rem; color: #ff9b52;">
+                                {{.jwsrNum}}
+                            </div>
+
+                        </div>
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset1">
-                      <div class="center xiaobiaoti">
-                        无症状感染者
-						 <div style="font-size: 2.5rem; color: #6c0c13;">
-							 {{.wzz}}
-						 </div>
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            无症状感染者
+                            <div style="font-size: 2.5rem; color: #6c0c13;">
+                                {{.wzz}}
+                            </div>
+                        </div>
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset1">
-                      <div class="center xiaobiaoti">
-                        现有确诊
-						 <div style="font-size: 2.5rem; color: #e8433a;">
-							 {{.econNum}}
-						 </div>
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            现有确诊
+                            <div style="font-size: 2.5rem; color: #e8433a;">
+                                {{.econNum}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="height:1.5rem">
+            <div style="height:0.5rem">
             </div>
             <div class="layui-row">
                 <div class="layui-row layui-col-space30">
                     <div style="height:1rem">
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset2">
-                      <div class="center xiaobiaoti">
-						  累积确诊
-						 <div style="font-size: 2.5rem; color: #9e1e18;">
-						  {{.gntotal}}
-						 </div>
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            累积确诊
+                            <div style="font-size: 2.5rem; color: #9e1e18;">
+                                {{.gntotal}}
+                            </div>
+                        </div>
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset1">
-                      <div class="center xiaobiaoti">
-						  累计死亡
-						 <div style="font-size: 2.5rem; color: #2d2d2d;">
-							 {{.deathtotal}}
-						 </div>
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            累计死亡
+                            <div style="font-size: 2.5rem; color: #2d2d2d;">
+                                {{.deathtotal}}
+                            </div>
+                        </div>
                     </div>
                     <div class="layui-col-md2 divdata layui-col-md-offset1">
-                      <div class="center xiaobiaoti">
-                        累计治愈
-						 <div style="font-size: 2.5rem; color: #16a169;">
-							 {{.curetotal}}
-						 </div>
-                      </div> 
+                        <div class="center xiaobiaoti">
+                            累计治愈
+                            <div style="font-size: 2.5rem; color: #16a169;">
+                                {{.curetotal}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="height:1.5rem">
+            <div style="height:0.5rem">
             </div>
         </div>
+        <div class="layui-row">
+            <div class="center" style="font-size: 1.6rem;color: white;">
+                {{if .myzerodays}}
+                {{.mycity}}已经 <b style="color:green">{{.myzerodays}}</b> 天没有新病例了！
+                {{else}}很不辛，昨天台湾有新增病例，{{end}} 下面是{{.mycity}}的其他数据。
+            </div>
+
+        </div>
+        <div class="layui-row">
+            <div class="layui-row layui-col-space30">
+                <div style="height:0.3rem">
+                </div>
+                <div class="layui-col-md2 divdata layui-col-md-offset2">
+                    <div class="center xiaobiaoti">
+                        累积确诊
+                        <div style="font-size: 2.5rem; color: #9e1e18;">
+                            {{.myvalue}}
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md2 divdata layui-col-md-offset1">
+                    <div class="center xiaobiaoti">
+                        累计死亡
+                        <div style="font-size: 2.5rem; color: #2d2d2d;">
+                            {{.mydeathnum}}
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md2 divdata layui-col-md-offset1">
+                    <div class="center xiaobiaoti">
+                        累计治愈
+                        <div style="font-size: 2.5rem; color: #16a169;">
+                            {{.mycurenum}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="height:1.5rem">
+        </div>
     </div>
-	<div class="layui-row">
-	<div class="center">
-		{{.mycity}} 疫情数据
-	</div>	
-	</div>
 </div>
 <div class="layui-row layui-bg-gray" style="height: 1.5rem;">
 </div>
 <div class="layui-row center">
-		<a href="/dashujure" class="layui-btn layui-btn-radius">点击我获取最新数据！</a>
+    <a href="/dashujure" class="layui-btn layui-btn-radius">点击我获取最新数据！</a>
 </div>
 <div class="layui-row layui-bg-gray" style="height: 1.5rem;">
 </div>
