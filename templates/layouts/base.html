@@ -19,24 +19,13 @@
         });
         layui.use(["layer", "form"], function() {
             var layer = layui.layer,
-                form = layui.form; {
-                {
-                    if.messagetype
-                }
-            }
+                form = layui.form; 
+            });
+			{{if.messagetype}}
             layer.msg("{{.message}} ", {
                 time: 2000,
-                icon: {
-                    {
-                        .messagetype
-                    }
-                },
-            }); {
-                {
-                    end
-                }
-            }
-        });
+                icon: {{.messagetype}},
+            }); {{end}}
     </script>
     <!-- <div class="layui&#45;row" style="height: auto"> -->
     <div class="layui-row">
@@ -46,7 +35,7 @@
                     <div style="height: 0.1rem"></div>
                     <a href="http://jc.nuaa.edu.cn/" target="_blank">
                         <img src="/static/pic/jcxyicon.png" alt="" height="100%" />
-                        <b class="center" style="color: white; line-height=3.8rem;font-size: 2.2rem">欢迎来到抗疫机器人管理系统</b>
+                        <!-- <b class="center" style="color: white; line&#45;height=3.8rem;font&#45;size: 2.2rem">欢迎</b> -->
                     </a>
                 </div>
                 <div class="layui-col-md6 layui-col-xs10">

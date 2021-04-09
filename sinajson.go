@@ -31,6 +31,6 @@ func initjson() Sinajson {
 	dat.Deathtotal = any.ToString()
 	any = jsoniter.Get(Body, "data", "curetotal")
 	dat.Curetotal = any.ToString()
+	file.Close()
 	return dat
-
 }
