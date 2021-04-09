@@ -63,6 +63,7 @@ func runweb() {
 		messagetype = "0"
 		geth(c)
 	})
+	r.GET("/dashujure", dashujure)
 	r.GET("/chengshi", chengshi)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
@@ -176,6 +177,19 @@ func yfmanager(c *gin.Context) {
 			"uname":       uname,
 		})
 	}
+}
+func dashujure(c *gin.Context) {
+
+	a := initjson()
+	c.HTML(http.StatusOK, "dashuju.html", gin.H{
+		"message":     "今日速报！",
+		"messagetype": "0",
+		"uname":       uname,
+		"data":        a.Data,
+		"gntotal":     a.Gntotal,
+		"deathtotal":  a.Deathtotal,
+		"curetotal":   a.Curetotal,
+	})
 }
 func dashuju(c *gin.Context) {
 	a := initjson()

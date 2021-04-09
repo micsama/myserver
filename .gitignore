@@ -1,4 +1,5 @@
 *.dll
+fymap2020_data.d.json
 *.so
 *.exe
 /tmp

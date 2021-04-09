@@ -17,6 +17,11 @@ type Sinajson struct {
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 var Body string
 
+func getjson() {
+	s := "rm fymap2020_data.d.jso;wget https://interface.sina.cn/news/wap/fymap2020_data.d.json"
+	cmd := exec.Command("/bin/bash", "-c", s)
+}
+
 func initjson() Sinajson {
 	// url := "https://interface<0;21;8M.sina.cn/news/wap/fymap2020_data.d.json"
 	// resp, _ := http.Get(url)
