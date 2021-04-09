@@ -6,14 +6,28 @@
 <h1>欢迎注册！：</h1>
 {{ end }}
 {{define "content"}}
-<div class="layui-container">
-    <div class="layui-row">
-        <div class="center">
-            <h1>Register</h1>
+<div class="center">
+    <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
+</div>
+<div class="layui-container yekong" style="height:100%;width:100%">
+    <div class="center">
+        <div style="height:2rem">
+
         </div>
-        <div class="layui-col-md4  layui-col-md-offset4 layui-col-xs10  layui-col-xs-offset1 center">
-            <br></br>
+    </div>
+    <div class="layui-row ">
+        <div class="layui-col-md4 layui-col-xs " style="height: 1px;" >
+			
+        </div>
+        <div class="layui-col-md4    layui-col-xs10 center  ">
+            <div class="center">
+                <img src="/static/pic/xiong.png" alt=""  style="width:20rem">
+            </div>
+            <div style="width:20% ;background-color:red;display:inline-block">
+            </div>
+            <div class="center" style="margin:0 auto;width:80% ;display:inline-block">
             <form class="layui-form layui-form-pane" style="font-size:normal" action="/register" method="POST">
+				<br></br>
                 <div class="layui-form-item">
                     <label class="layui-form-label" for="username">用户名：</label>
                     <div class="layui-input-inline">
@@ -31,8 +45,10 @@
                 <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe654;</i> 立即注册！！</button>
                 <br></br>
             </form>
+            </div>
+        </div>
+        <div class="layui-col-md4 layui-col-xs3 center">
         </div>
     </div>
 </div>
-
 {{ end }}
