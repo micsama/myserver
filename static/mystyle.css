@@ -27,6 +27,29 @@ hr {
 .center {
 	text-align: center;
 }
+.test{
+	height: 2rem;
+	background-color:gold;
+}
+.xiaobiaoti{
+	font-size: 1.2rem;
+	font-weight: bold;
+
+}
+.divdata{
+
+
+            background-color:azure ;
+
+            height:7rem;
+
+            border-radius:20px;
+
+            text-align: center;
+
+            line-height: 2.5rem;
+
+        }
 
 h1 {
 	padding: 0;

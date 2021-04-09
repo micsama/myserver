@@ -1,4 +1,3 @@
-
 {{template "base.html" . }}
 {{define "title"}}
 --城市疫情图--
@@ -6,7 +5,21 @@
 {{define "header"}}
 <h1>---城市疫情图！---</h1>
 {{ end }}
-
 {{define "content"}}
 
+<div class="center">
+    <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
+</div>
+<div class="center" style="line-height: 4.5rem;font-size:1.5rem">
+    您的所在的城市是：
+    <b style="color:green">
+        <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+        <script type="text/javascript">
+            document.write(returnCitySN["cname"])
+        </script>
+    </b>
+    。当前疫情情况如下：
+</div>
+<div class="layui-row layui-bg-gray" style="height: 5rem;">
+</div>
 {{ end }}

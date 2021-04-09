@@ -7,33 +7,94 @@
 {{ end }}
 
 {{define "content"}}
-<h2 class="center">新冠信息实时获取</h2>
-<div class="layui-row">
-    <div class="layui-col-md5">
-        <img src="/static/pic/ditu.png" alt="">
-		<br></br>
-		<a href="/dashujure" class="layui-btn layui-btn-radius">点击我获取最新数据！</a>
 
+<div class="center">
+    <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
 
-    </div>
-
-    <div class=" center yekong layui-col-md7" style="font-size: 1.3rem;">
-
-        <blockquote class="layui-elem-quote">
-            <i class="layui-icon layui-icon-log" style="font-size: 1.2rem;"></i> {{.data}}
-            <br></br>
-            <br></br>
-            <i class="layui-icon layui-icon-group" style="font-size: 1.2rem;"></i> 中国总计感染人数 ： {{.gntotal}}
-            <br></br>
-            <br></br>
-            <i class="layui-icon layui-icon-close-fill" style="font-size: 1.2rem;"></i> 中国总死亡人数 ： {{.deathtotal}}
-            <br></br>
-            <br></br>
-            <i class="layui-icon layui-icon-face-smile-b" style="font-size: 1.2rem;"></i> 中国总治愈人数 : {{.curetotal}}
-    </div>
+					<div style="font-size: 3rem;">
+						截至{{.data}}
+					</div>
 </div>
+<div class="layui-row">
+    <div class="layui-col-md10 layui-col-md-offset1 yekong" style=" border-radius:20px;">
+        <div class="layui-row">
+            <div class="layui-row">
+                <div class="layui-row layui-col-space30">
+                    <div style="height:3rem">
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset2">
+                      <div class="center xiaobiaoti">
+                      	 境外输入
+						 <div style="font-size: 2.5rem; color: #ff9b52;">
+							 {{.jwsrNum}}
+						 </div>
+						 	
+                      </div> 
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset1">
+                      <div class="center xiaobiaoti">
+                        无症状感染者
+						 <div style="font-size: 2.5rem; color: #6c0c13;">
+							 {{.wzz}}
+						 </div>
+                      </div> 
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset1">
+                      <div class="center xiaobiaoti">
+                        现有确诊
+						 <div style="font-size: 2.5rem; color: #e8433a;">
+							 {{.econNum}}
+						 </div>
+                      </div> 
+                    </div>
+                </div>
+            </div>
+            <div style="height:1.5rem">
+            </div>
+            <div class="layui-row">
+                <div class="layui-row layui-col-space30">
+                    <div style="height:1rem">
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset2">
+                      <div class="center xiaobiaoti">
+						  累积确诊
+						 <div style="font-size: 2.5rem; color: #9e1e18;">
+						  {{.gntotal}}
+						 </div>
+                      </div> 
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset1">
+                      <div class="center xiaobiaoti">
+						  累计死亡
+						 <div style="font-size: 2.5rem; color: #2d2d2d;">
+							 {{.deathtotal}}
+						 </div>
+                      </div> 
+                    </div>
+                    <div class="layui-col-md2 divdata layui-col-md-offset1">
+                      <div class="center xiaobiaoti">
+                        累计治愈
+						 <div style="font-size: 2.5rem; color: #16a169;">
+							 {{.curetotal}}
+						 </div>
+                      </div> 
+                    </div>
+                </div>
+            </div>
+            <div style="height:3.5rem">
+            </div>
+        </div>
+    </div>
 
-<h4 style="font-size:1rem">数据来自新浪网 数据接口：https://interface.sina.cn/news/wap/fymap2020_data.d.json 每天更新</h4>
+</div>
+<div class="layui-row layui-bg-gray" style="height: 1.5rem;">
+</div>
+<div class="layui-row center">
+		<a href="/dashujure" class="layui-btn layui-btn-radius">点击我获取最新数据！</a>
+</div>
+<div class="layui-row layui-bg-gray" style="height: 1.5rem;">
+</div>
+<h4 style="font-size:1rem">数据来自新浪网 更新间隔一小时 数据接口：https://interface.sina.cn/news/wap/fymap2020_data.d.json </h4>
 </blockquote>
 
 

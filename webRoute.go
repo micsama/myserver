@@ -1,12 +1,17 @@
 package main
 
 import (
-	"github.com/gin-contrib/multitemplate"
-	"github.com/gin-gonic/gin"
+	"fmt"
+	_ "fmt"
 	"html/template"
 	"net/http"
 	"path/filepath"
+
+	"github.com/gin-contrib/multitemplate"
+	"github.com/gin-gonic/gin"
 )
+
+var Words []rune
 
 func runweb() {
 	wg.Add(1)
@@ -64,7 +69,7 @@ func runweb() {
 		geth(c)
 	})
 	r.GET("/dashujure", dashujure)
-	r.GET("/chengshi", chengshi)
+	// r.GET("/chengshi", chengshi)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfmanager", yfmanager)
@@ -77,6 +82,8 @@ func runweb() {
 	})
 
 	//--------------------POST------------------
+	r.GET("/chengshi", mycity)
+	r.POST("/chengshi", mycity)
 	r.POST("/register", register)
 	r.POST("/signin", signin)
 
@@ -179,6 +186,7 @@ func yfmanager(c *gin.Context) {
 	}
 }
 func dashujure(c *gin.Context) {
+	getjson()
 
 	a := initjson()
 	c.HTML(http.StatusOK, "dashuju.html", gin.H{
@@ -189,6 +197,9 @@ func dashujure(c *gin.Context) {
 		"gntotal":     a.Gntotal,
 		"deathtotal":  a.Deathtotal,
 		"curetotal":   a.Curetotal,
+		"jwsrNum":     a.Jwsr,
+		"wzz":         a.Wzz,
+		"econNum":     a.Econnum,
 	})
 }
 func dashuju(c *gin.Context) {
@@ -201,12 +212,42 @@ func dashuju(c *gin.Context) {
 		"gntotal":     a.Gntotal,
 		"deathtotal":  a.Deathtotal,
 		"curetotal":   a.Curetotal,
+		"jwsrNum":     a.Jwsr,
+		"wzz":         a.Wzz,
+		"econNum":     a.Econnum,
 	})
 }
 func chengshi(c *gin.Context) {
 	c.HTML(http.StatusOK, "chengshi.html", gin.H{
 		"message":     "欢迎！",
 		"messagetype": "1",
+		"uname":       uname,
+	})
+}
+
+func mycity(c *gin.Context) {
+	thecity := c.Query("mycity")
+	Words = ([]rune)(thecity)
+	fmt.Println(thecity, "-----")
+	l := len(Words)
+
+	for i, c := range Words {
+		fmt.Println("--> ", c)
+		if c == 30465 || c == 24066 { //江苏“省”南京“市”的“省”和“市”字的编码
+			if i == l-1 {
+				Words = Words[:i]
+				break
+			} else {
+				Words = Words[i+1 : l-1]
+			}
+		}
+	}
+	fmt.Println(Words, "-----")
+	thecity = string(Words)
+	c.HTML(http.StatusOK, "chengshi.html", gin.H{
+		"message":     "huanying",
+		"messagetype": "1",
+		"thecity":     thecity,
 		"uname":       uname,
 	})
 }
