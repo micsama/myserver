@@ -38,9 +38,10 @@ func register(c *gin.Context) {
 		tag = "signin.html"
 	}
 	c.HTML(http.StatusOK, tag, gin.H{
-		"message": message,
-		"m":       login.Password,
-		"c":       sum,
+		"message":     message,
+		"messagetype": messagetype,
+		"m":           login.Password,
+		"c":           sum,
 	})
 
 }

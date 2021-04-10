@@ -6,6 +6,25 @@
 <h1>欢迎注册！：</h1>
 {{ end }}
 {{define "content"}}
+<script>
+    function validate() {
+        var pw1 = document.getElementById("password").value;
+        var pw2 = document.getElementById("password1").value;
+		if(pw1){
+        if (pw1 == pw2) {
+            document.getElementById("tishi").innerHTML = "<font color='green'>两次密码相同</font>";
+            document.getElementById("submit").disabled = false;
+        } else {
+            document.getElementById("tishi").innerHTML = "<font color='red'>两次密码不相同</font>";
+            document.getElementById("submit").disabled = true;
+        }
+
+		}else{
+            document.getElementById("tishi").innerHTML = "<font color='green'>请输入密码</font>";
+		}
+    }
+    setInterval("validate()", "1000");
+</script>
 <div class="center">
     <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
 </div>
@@ -16,39 +35,49 @@
         </div>
     </div>
     <div class="layui-row ">
-        <div class="layui-col-md4 layui-col-xs " style="height: 1px;" >
-			
+        <div class="layui-col-md4 layui-col-xs " style="height: 1px;">
+
         </div>
         <div class="layui-col-md4    layui-col-xs10 center  ">
             <div class="center">
-                <img src="/static/pic/xiong.png" alt=""  style="width:20rem">
+                <img src="/static/pic/xiong.png" alt="" style="width:20rem">
             </div>
             <div style="width:20% ;background-color:red;display:inline-block">
             </div>
             <div class="center" style="margin:0 auto;width:80% ;display:inline-block">
-            <form class="layui-form layui-form-pane" style="font-size:normal" action="/register" method="POST">
-				<br></br>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" for="username">用户名：</label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input" type="text" lay-verify="required" placeholder="请输入用户名" name="username" id="username" required />
+                <form class="layui-form layui-form-pane" style="font-size:normal" action="/register" method="POST">
+                    <br></br>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="username">用户名：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" lay-verify="required" placeholder="请输入用户名" name="username" id="username" required />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" for="password">密码：</label>
-                    <div class="layui-input-inline">
-                        <input class="layui-input" type="password" name="password" id="password" lay-verify="required" placeholder="请输入密码" required />
+                    <br>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="password">密码：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="password" name="password" id="password" lay-verify="required" placeholder="请输入密码" required />
+                        </div>
                     </div>
-                </div>
-                <br>
-                <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe654;</i> 立即注册！！</button>
-                <br></br>
-            </form>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="password1">确认密码：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="password" name="password1" id="password1" lay-verify="required" placeholder="请确认你的密码" required />
+                        </div>
+                    </div>
+                    <span id="tishi" style="font-size: 1.4rem;"></span>
+					<br></br>
+                    <button class="layui-btn layui-btn-radius" id="submit" lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe654;</i> 立即注册！！</button>
+                    <br></br>
+                </form>
             </div>
         </div>
         <div class="layui-col-md4 layui-col-xs3 center">
         </div>
     </div>
 </div>
+
+
+</body>
 {{ end }}
