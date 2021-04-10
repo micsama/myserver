@@ -46,10 +46,14 @@ func runweb() {
 		geth(c)
 	})
 	r.GET("/", func(c *gin.Context) {
-		tag = "index.html"
-		message = "欢迎来到抗疫机器人在线管理系统！"
-		messagetype = "1"
-		geth(c)
+		if c.Query("id") == "-1" {
+			logout(c)
+		} else {
+			tag = "index.html"
+			message = "欢迎来到抗疫机器人在线管理系统！"
+			messagetype = "1"
+			geth(c)
+		}
 	})
 	r.GET("/register", func(c *gin.Context) {
 		tag = "register.html"
@@ -73,7 +77,6 @@ func runweb() {
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfmanager", yfmanager)
-	r.GET("/logout", logout)
 	r.GET("/signin", func(c *gin.Context) {
 		tag = "signin.html"
 		message = "请登录账户！"
@@ -84,7 +87,7 @@ func runweb() {
 	//--------------------POST------------------
 	r.POST("/dashuju", mycity)
 	r.POST("/register", register)
-	r.POST("/signin", signin)
+	r.POST("/home", signin)
 
 	//---------Run---------------------/
 	r.Run(":13488")
