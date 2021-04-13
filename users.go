@@ -62,8 +62,8 @@ func signin(c *gin.Context) {
 				messagetype = "1"
 				tag = "home.html"
 				uname = " " + login.Username + " "
-				c.SetCookie("name", login.Username, 3600, "/", "", false, true)
-				c.SetCookie("acc", "admin", 3600, "/", "", false, true)
+				c.SetCookie("name", login.Username, 7200, "/", "", false, true)
+				c.SetCookie("acc", "admin", 7200, "/", "", false, true)
 			} else {
 				message = "密码错误！"
 				messagetype = "3"
