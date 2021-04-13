@@ -24,7 +24,7 @@ func main() {
 	if testing {
 		myurl = "localhost"
 	} else {
-		myurl = "www.dzmfg.icu"
+		// myurl = "www.dzmfg.icu"
 	}
 	go initlisten()
 	initsql()
