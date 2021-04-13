@@ -12,6 +12,7 @@ import (
 )
 
 var Words []rune
+var messagenum = "ok"
 var Thecity = "北京"
 
 func runweb() {
@@ -33,14 +34,18 @@ func runweb() {
 
 	//-----------------GET------------------
 	r.GET("/index", func(c *gin.Context) {
-		tag = "index.html"
+		tag = "base_index.html"
 		message = "欢迎来到抗疫机器人在线管理系统！"
 		messagetype = "4"
 		geth(c)
 	})
 	r.GET("/yfdata", yfdata)
+	r.GET("/addnew", func(c *gin.Context) {
+		tag = "bot_yaofang_addnew.html"
+		geth(c)
+	})
 	r.GET("/home", func(c *gin.Context) {
-		tag = "home.html"
+		tag = "user_home.html"
 		message = "欢迎来到控制台！"
 		messagetype = "1"
 		geth(c)
@@ -49,26 +54,26 @@ func runweb() {
 		if c.Query("id") == "-1" {
 			logout(c)
 		} else {
-			tag = "index.html"
+			tag = "base_index.html"
 			message = "欢迎来到抗疫机器人在线管理系统！"
 			messagetype = "1"
 			geth(c)
 		}
 	})
 	r.GET("/register", func(c *gin.Context) {
-		tag = "register.html"
+		tag = "user_register.html"
 		message = "欢迎注册！！"
 		messagetype = "0"
 		geth(c)
 	})
 	r.GET("/about", func(c *gin.Context) {
-		tag = "about.html"
+		tag = "base_about.html"
 		message = "关于"
 		messagetype = "0"
 		geth(c)
 	})
 	r.GET("/shijian", func(c *gin.Context) {
-		tag = "shijian.html"
+		tag = "base_shijian.html"
 		message = "了解一下新冠的时间线吧~"
 		messagetype = "0"
 		geth(c)
@@ -78,7 +83,7 @@ func runweb() {
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfmanager", yfmanager)
 	r.GET("/signin", func(c *gin.Context) {
-		tag = "signin.html"
+		tag = "user_signin.html"
 		message = "请登录账户！"
 		messagetype = "0"
 		geth(c)
@@ -86,6 +91,7 @@ func runweb() {
 
 	//--------------------POST------------------
 	r.POST("/dashuju", mycity)
+	r.POST("/addnew", addnew)
 	r.POST("/register", register)
 	r.POST("/home", signin)
 
@@ -115,10 +121,12 @@ func loadTemplates(templatesDir string) multitemplate.Renderer {
 }
 
 func geth(c *gin.Context) {
+	fmt.Println(tag)
 	c.HTML(http.StatusOK, tag, gin.H{
 		"message":     message,
 		"uname":       uname,
 		"messagetype": messagetype,
+		"messagenum":  messagenum,
 	})
 }
 func Checklogin() gin.HandlerFunc {
@@ -144,7 +152,7 @@ func xdlog(c *gin.Context) {
 			"uname":       uname,
 		})
 	} else {
-		c.HTML(http.StatusOK, "index.html", gin.H{
+		c.HTML(http.StatusOK, "base_index.html", gin.H{
 			"message":     "您的权限不足！正在返回首页！",
 			"messagetype": "4",
 			"uname":       uname,
@@ -163,7 +171,7 @@ func yfdata(c *gin.Context) {
 			"data":  yfdatamap,
 		})
 	} else {
-		c.HTML(http.StatusOK, "index.html", gin.H{
+		c.HTML(http.StatusOK, "base_index.html", gin.H{
 			"message":     "您的权限不足！正在返回首页！",
 			"messagetype": "4",
 			"uname":       uname,
@@ -174,13 +182,13 @@ func yfdata(c *gin.Context) {
 func yfmanager(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
 	if acc == "admin" {
-		c.HTML(http.StatusOK, "yfmanager.html", gin.H{
+		c.HTML(http.StatusOK, "bot_yaofang.html", gin.H{
 			"message":     "欢迎！",
 			"messagetype": "1",
 			"uname":       uname,
 		})
 	} else {
-		c.HTML(http.StatusOK, "index.html", gin.H{
+		c.HTML(http.StatusOK, "base_index.html", gin.H{
 			"message":     "您的权限不足！正在返回首页！",
 			"messagetype": "4",
 			"uname":       uname,
@@ -195,7 +203,7 @@ func dashujure(c *gin.Context) {
 func dashuju(c *gin.Context) {
 	a := initjson()
 
-	c.HTML(http.StatusOK, "dashuju.html", gin.H{
+	c.HTML(http.StatusOK, "base_dashuju.html", gin.H{
 		"message":     "今日速报！",
 		"messagetype": "0",
 		"uname":       uname,

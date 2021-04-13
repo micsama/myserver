@@ -13,6 +13,15 @@
 </div>
 
 <script>
+layui.use('layer', function(){
+  var layer = layui.layer;
+layer.open({
+	type:2,
+	content:'/addnew',
+	resize:false,
+	area:['300px','419px'],
+})
+});
 	layui.use("table", function () {
 		var table = layui.table;
 		table.render({
@@ -28,7 +37,7 @@
 			cols: [
 				[
 					{ field: "Checkbox", title: "", type: "checkbox", fixed: "left" },
-					{ field: "Id", title: "ID", type: "number", sort: true  },
+					// { field: "Id", title: "ID", type: "number", sort: true  },
 					{ field: "Name", title: "药品名称", sort: true,  },
 					{ field: "Count", title: "药品存量", sort: true },
 					{ field: "Otherinf", title: "药品其他信息", sort: true, style: "text" },

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{{define "content"}}
+
+<div class="center" style="margin:0 auto;width:80% ;display:inline-block">
+    <form class="layui-form layui-form-pane center" action="/addnew" method="POST">
+        <br></br>
+        <div class="layui-form-item center">
+            <label class="layui-form-label" for="name">药品名称：</label>
+            <div class="layui-input-inline">
+                <input class="layui-input" type="text" lay-verify="required" placeholder="请输入药品名" name="name" id="name" required />
+            </div>
+        </div>
+        <br>
+        <div class="layui-form-item">
+            <label class="layui-form-label" for="num">药品数量：</label>
+            <div class="layui-input-inline">
+                <input class="layui-input"  name="num" id="num" lay-verify="required" placeholder="请输入数量" required />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" for="inf">其他信息：</label>
+            <div class="layui-input-inline">
+                <input class="layui-input"  name="inf" id="inf"  placeholder="其他信息(可选)" />
+            </div>
+        </div>
+        <br>
+        <button class="layui-btn layui-btn-radius" lay-submit lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe609;</i> 添加</button>
+        <br></br>
+    </form>
+</div>
+{{end}}

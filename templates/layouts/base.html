@@ -43,10 +43,10 @@
                 <div class="layui-col-md6 layui-col-xs10">
                     <nav>
                         <!-- {{block "header" .}}{{ end }} -->
-                        <ul class="layui-nav" lay-filter="">
+                        <ul class="layui-nav" style="text-align: right;" lay-filter="">
                             {{if .uname}}
                             <li class="layui-nav-item">
-                                <a href="/home" target="_top"><i class="layui-icon">&#xe612;</i> {{.uname}}</a>
+								<a href="/home" target="_top"><i class="layui-icon">&#xe612;</i> {{.uname}}<span class="layui-badge">{{.messagenum}}</span></a>
                             </li>
                             <li class="layui-nav-item">
                                 <a href="/?id=-1" target="_top">注销</a>
