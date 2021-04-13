@@ -40,6 +40,7 @@ func runweb() {
 		geth(c)
 	})
 	r.GET("/yfdata", yfdata)
+	r.GET("/log", log)
 	r.GET("/addnew", func(c *gin.Context) {
 		tag = "bot_yaofang_addnew.html"
 		geth(c)

@@ -11,7 +11,7 @@
     <img src="/static/pic/sunraisr.jpeg" style="width: 100%;" alt="">
 
     <div style="font-size: 3rem;">
-        截至{{.data}}
+        {{.data}}
     </div>
 </div>
 <div class="layui-row">
@@ -23,7 +23,6 @@
                         <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
                         <script type="text/javascript">
                             var mycity = returnCitySN["cname"]
-
                             function test() {
                                 $.ajax({
                                     type: "POST",
@@ -98,7 +97,9 @@
         </div>
         <div class="layui-row">
             <div class="center" style="font-size: 1.6rem;color: white;">
-                {{.mycity}}的新冠数据
+                您所处的位置 <div style="display: inline;color:yellowgreen">
+                	{{.mycity}}
+                </div> 的新冠数据
 				
 
                 <!-- {{if .myzerodays}} -->

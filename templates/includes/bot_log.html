@@ -1,0 +1,53 @@
+{{template "base.html" . }}
+{{define "title"}}
+{{.botname}}
+{{ end }}
+{{define "header"}}
+<h1>{{.botname}}日志中心</h1>
+{{ end }}
+{{define "content"}}
+<div class="center" style="height: 2rem;">
+	读取自日志文件
+
+</div>
+
+<div class="layui-content">
+    <div class="layui-row">
+        <div class="layui-col-md10 layui-col-md-offset1">
+            <div class="layui-col-md10 layui-col-md-offset1">
+					<div class="layui-col-md3 layui-col-xs4 myb">
+						<a href="/log?id=0" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 0}}layui-btn-disabled {{end}}">自定位抗疫机器人</a>
+					</div>
+					<div class="layui-col-md3 layui-col-xs4 myb">
+						<a href="/log?id=1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 1}}layui-btn-disabled {{end}}">多翼无人机抗议巡检机器人</a>
+					</div>
+					<div class="layui-col-md3 layui-col-xs4 myb">
+						<a href="/log?id=2" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 2}}layui-btn-disabled {{end}}">消毒机器人</a>
+					</div>
+					<div class="layui-col-md3 layui-col-xs4 myb">
+						<a href="/log?id=3" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 3}}layui-btn-disabled {{end}}">药房自动发药机器人</a>
+					</div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md8 layui-col-md-offset2">
+            <fieldset class="" style="height:auto">
+                <legend>
+                    <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}} 日志&nbsp;&nbsp;</h2>
+                </legend>
+                <div class="layui-field-box">
+                    <pre class="ptext" style="height: 40rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
+                    {{.body}}
+                    </pre>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<div class="" style="height: 2rem;">
+
+</div>
+{{end}}

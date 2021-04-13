@@ -20,46 +20,141 @@
     }
     test()
 </script>
-
 {{if .uname}}
-<h2 class="center" style="line-height:3rem">抗疫机器人控制台</h2>
-<hr class="layui-bg-green center" style="width: 90%;height: 2px;" />
-<br>
 <div class="layui-row">
-    <div class="layui-col-md5 layui-col-md-offset1">
-        <fieldset class="" style="height: 80%">
+
+    <div class="layui-col-md10 layui-col-md-offset1">
+
+        <fieldset class="" style="height:auto">
             <legend>
-                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;消毒机器人Status&nbsp;&nbsp;</h2>
+                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;主面板&nbsp;&nbsp;</h2>
             </legend>
             <div class="layui-field-box">
-				<div class="center">
-					
-				<p>日志：</p>
-				</div>
+                <div class="layui-col-md2 center" style="font-size: 1.3rem;">
+					欢迎： {{.uname}}
+					<br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">管理用户</a>
+                </div>
+                <div class="layui-col-md2 center" style="font-size: 1.3rem;">
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">监控中心</a>
+                </div>
 
             </div>
         </fieldset>
     </div>
-    <div class="layui-col-md5">
-        <fieldset class="" style="height: 80%">
+
+</div>
+<h2 class="center" style="line-height:3rem">抗疫机器人控制台</h2>
+<hr class="layui-bg-green center" style="width: 90%;height: 2px;" />
+<br>
+<br></br>
+<div class="layui-row">
+    <div class="layui-col-md5 layui-col-md-offset1">
+        <fieldset class="" style="height:auto">
             <legend>
-                <h2>&nbsp;&nbsp;药房管理机器人Status&nbsp;&nbsp;</h2>
+                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;自定位抗疫机器人Status&nbsp;&nbsp;</h2>
             </legend>
             <div class="layui-field-box">
-                <br></br>
-				<div class="center">
-					
-				</div>
-                <div style="padding-left:4rem">
 
-                    <a href="/yfmanager" target="_top" class="layui-btn">管理药房</a>
+                <div class="layui-col-md6 ptext" style="border:green;">
+                    没有紧急情况，运转正常
                 </div>
+                <div class="layui-col-md6 center" style="line-height: 5rem;">
+
+					<div class="layui-col-md11  layui-col-xs6 myb">
+						
+                    <a href="/log?id=0" target="_top" class="layui-btn layui-btn-radius">查看日志</a>
+					</div>
+					<div class="layui-col-md11 layui-col-xs6 myb">
+						
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看状态</a>
+					</div>
+					<div class="layui-col-md11 layui-col-xs6 myb">
+						
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看监控</a>
+					</div>
+					<div class="layui-col-md12 layui-col-xs6 myb">
+						
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">控制机器人</a>
+					</div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="layui-col-md5">
+        <fieldset class="" style="height:auto">
+            <legend>
+                <h2>&nbsp;&nbsp;多翼无人机抗议巡检机器人Status&nbsp;&nbsp;</h2>
+            </legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md6 ptext" style="border:green;">
+                    没有紧急情况，运转正常
+                </div>
+                <div class="layui-col-md6 center">
+
+                    <a href="/log?id=1" target="_top" class="layui-btn layui-btn-radius">查看日志</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看状态</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看监控</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">控制机器人</a>
+                </div>
+                <br></br>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="layui-row">
+    <div class="layui-col-md5 layui-col-md-offset1">
+        <fieldset class="" style="height:auto">
+            <legend>
+                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;消毒机器人Status&nbsp;&nbsp;</h2>
+            </legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md6 ptext" style="border:green;">
+                    没有紧急情况，运转正常
+                </div>
+                <div class="layui-col-md6 center">
+
+                    <a href="/log?id=2" target="_top" class="layui-btn layui-btn-radius">查看日志</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看状态</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看监控</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">控制机器人</a>
+                </div>
+                <br></br>
+            </div>
+        </fieldset>
+    </div>
+    <div class="layui-col-md5">
+        <fieldset class="" style="height: auto">
+            <legend>
+                <h2>&nbsp;&nbsp;药房自动发药机器人Status&nbsp;&nbsp;</h2>
+            </legend>
+            <div class="layui-field-box">
+                <div class="layui-col-md6 ptext" style="border:green;">
+                    没有紧急情况，运转正常
+                </div>
+                <div class="layui-col-md6 center">
+
+                    <a href="/log?id=3" target="_top" class="layui-btn layui-btn-radius">查看日志</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看状态</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">查看监控</a>
+                    <br></br>
+                    <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">控制机器人</a>
+                </div>
+                <br></br>
             </div>
         </fieldset>
     </div>
 </div>
 <div style="height: 1rem;">
-	
+
 </div>
 {{else}}
     <h1 class="center">请登录后再查看本页面！</h1>

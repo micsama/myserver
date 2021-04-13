@@ -1,76 +1,93 @@
 @charset "utf-8";
+
 body {
-	background-image: url("/static/pic/background.jpeg");
-	background-attachment: fixed;
-	background-position: 100%, 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
+    background-image: url("/static/pic/background.jpeg");
+    background-attachment: fixed;
+    background-position: 100%, 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 ul {
-	right: 0px;
-	padding: 10px;
-	position: absolute;
+    right: 0px;
+    padding: 10px;
+    position: absolute;
 }
+
 hr {
-	margin: auto;
+    margin: auto;
 }
+
 .yekong {
-	background-image: url("/static/pic/yekong.jpeg");
-	background-size: 100% 100%;
+    background-image: url("/static/pic/yekong.jpeg");
+    background-size: 100% 100%;
 }
+
 .ptext {
-	line-height: 30px;
-	font-size: 20px;
-	text-indent: 2em;
+    line-height: 30px;
+    text-indent: 2rem;
+    font-size: 1.2rem;
+}
+
+.myb {
+
+    text-align: center;
+    height: 2.7rem;
 }
 
 .center {
-	text-align: center;
+    text-align: center;
 }
-.test{
-	height: 2rem;
-	background-color:gold;
+
+.test {
+    height: 2rem;
+    background-color: gold;
 }
-.xiaobiaoti{
-	font-size: 1.2rem;
-	font-weight: bold;
-	color:black;
+
+.xiaobiaoti {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
 
 }
-.divdata{
+
+.divdata {
 
 
-            background-color:azure ;
+    background-color: azure;
 
-            height:7rem;
+    height: 7rem;
 
-            border-radius:20px;
+    border-radius: 20px;
 
-            text-align: center;
+    text-align: center;
 
-            line-height: 2.5rem;
+    line-height: 2.5rem;
 
-        }
+}
 
 h1 {
-	padding: 0;
-	line-height: 3.5rem;
-	font-size: 2rem;
+    padding: 0;
+    line-height: 3.5rem;
+    font-size: 2rem;
 }
-h2 {
-	padding: 0, 2rem, 0, 2rem;
 
-	font-size: 1.5rem;
+h2 {
+    padding: 0, 2rem, 0, 2rem;
+
+    font-size: 1.5rem;
 }
+
 h3,
 h4,
 h5,
 h6 {
-	font-size: 1.5rem;
-	padding: 0 2em 0 1em;
+    font-size: 1.5rem;
+    padding: 0 2em 0 1em;
 }
+
 p {
-	padding: 0 2rem 0 2rem;
-	line-height: 2rem;
-	font-size: 1.2rem;
+    padding: 0 2rem 0 2rem;
+    line-height: 2rem;
+    font-size: 1.2rem;
 }
