@@ -1,6 +1,6 @@
 module server
 
-go 1.15
+go 1.16
 
 require (
 	github.com/cosmtrek/air v1.21.2 // indirect
