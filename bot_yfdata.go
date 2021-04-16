@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	_ "net/http"
+	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -29,10 +29,7 @@ func addnew(c *gin.Context) {
 		fmt.Println("插入失败", err)
 		userdb.Table("users")
 	}
-	// c.HTML(http.StatusOK, "yfmanager.html", gin.H{
-	// 	"messag":      "添加成功",
-	// 	"messagetype": "1",
-	// })
+	c.HTML(http.StatusOK, "bot_yaofang_addnew_ok.html", gin.H{})
 
 }
 func refreshyfdata() {

@@ -11,25 +11,26 @@
 		<table id="demo" lay-filter="test"></table>
 	</div>
 </div>
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container">
+    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+    <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+    <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+  </div>
+</script>
 
 <script>
 layui.use('layer', function(){
   var layer = layui.layer;
-layer.open({
-	type:2,
-	content:'/addnew',
-	resize:false,
-	area:['300px','419px'],
-})
 });
 	layui.use("table", function () {
 		var table = layui.table;
 		table.render({
 			even: true,
-			toolbar: "default",
+			toolbar: "#toolbarDemo",
 			elem: "#demo",
-			limit: 15,
 			height: 612,
+			limit:40,
 			url: "/yfdata/",
 			page: true,
 			loading: true,
@@ -42,6 +43,30 @@ layer.open({
 					{ field: "Otherinf", title: "药品其他信息", sort: true, style: "text" },
 				],],
 		});
+table.on('toolbar(test)',function(obj){
+	var checkStatus=table.checkStatus(obj.config.id);
+			layer.msg('add');
+	switch(obj.event){
+		case 'add':
+layer.open({
+	type:2,
+	time:6000,
+	shade:0.5,
+	shadeClose:true,
+	content:'/addnew',
+	resize:false,
+	area:['300px','419px'],
+})
+
+			break;
+			case 'delete':
+			layer.msg('del');
+			break;
+			case 'update':
+			layer.msg('up');
+			break;
+	};
+});
 	});
 </script>
 {{ end }}
