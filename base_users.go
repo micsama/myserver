@@ -62,8 +62,9 @@ func signin(c *gin.Context) {
 				messagetype = "1"
 				tag = "user_home.html"
 				uname = " " + login.Username + " "
+				accsha := sha256.Sum256([]byte(login.Username + "admin"))
 				c.SetCookie("name", login.Username, 7200, "/", "", false, true)
-				c.SetCookie("acc", "admin", 7200, "/", "", false, true)
+				c.SetCookie("acc", string(accsha[:]), 7200, "/", "", false, true)
 			} else {
 				message = "密码错误！"
 				messagetype = "3"

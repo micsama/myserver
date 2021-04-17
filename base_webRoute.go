@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"fmt"
 	_ "fmt"
 	"html/template"
@@ -137,14 +138,15 @@ func geth(c *gin.Context) {
 func Checklogin() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		uname, _ = c.Cookie("name")
-		if uname != "" {
-			uname = " " + uname + " "
+		acc, _ = c.Cookie("acc")
+		a := sha256.Sum256([]byte(uname + "admin"))
+		accsha := string(a[:])
+		if acc == accsha {
 		} else {
+			uname = ""
 			message = "请登录账户！"
 			messagetype = "4"
 		}
-		acc = "admin"
-		c.Next()
 	}
 }
 
