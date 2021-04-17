@@ -1,0 +1,42 @@
+.
+├── base_main.go
+├── base_sinajson.go
+├── base_Tcp.go
+├── base_users.go
+├── base_webRoute.go
+├── base_websocket.go
+├── bot_all_log.go
+├── bot_yfdata.go
+├── data/
+│   ├── data.db
+│   ├── data.sqbpro
+│   └── log/
+│       ├── Automatic_dispensing_robot.log
+│       ├── Disinfection_robot.log
+│       ├── Multi_wing_UAV_patrol_robot.log
+│       └── Self_positioning_anti_epidemic_robot.log
+├── fymap2020_data.d.json
+├── go.mod
+├── go.sum
+├── LICENSE
+├── README.md
+├── server
+├── static/
+│   ├── layui/
+│   ├── mystyle.css
+│   └── pic/
+├── templates/
+│   ├── includes/
+│   │   ├── base_404.html
+│   │   ├── base_dashuju.html
+│   │   ├── base_index.html
+│   │   ├── base_shijian.html
+│   │   ├── bot_log.html
+│   │   ├── bot_yaofang_addnew.html
+│   │   ├── bot_yaofang.html
+│   │   ├── user_home.html
+│   │   ├── user_register.html
+│   │   └── user_signin.html
+│   └── layouts/
+│       └── base.html
+└── tmp/
