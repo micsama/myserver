@@ -17,13 +17,14 @@ var messagenum = "ok"
 var Thecity = "北京"
 
 func runweb() {
+	// gin.SetMode(gin.ReleaseMode)
 	wg.Add(1)
 	r := gin.Default()
 	r.Use(Checklogin())
 	r.Static("/static", "./static")  //css
 	r.Static("/layui", "./layui")    //css
 	r.NoRoute(func(c *gin.Context) { //404
-		c.HTML(http.StatusNotFound, "404.html", nil)
+		c.HTML(http.StatusNotFound, "base_404.html", nil)
 	})
 	r.SetFuncMap(template.FuncMap{ //html  |safe
 		"safe": func(str string) template.HTML {
@@ -40,12 +41,11 @@ func runweb() {
 		messagetype = "4"
 		geth(c)
 	})
-	r.GET("/yfdata", yfdata)
-	r.GET("/log", log)
 	r.GET("/addnewok", func(c *gin.Context) {
 		tag = "bot_yaofang_addnew_ok.html"
 		geth(c)
 	})
+
 	r.GET("/addnew", func(c *gin.Context) {
 		tag = "bot_yaofang_addnew.html"
 		geth(c)
@@ -78,22 +78,45 @@ func runweb() {
 		messagetype = "0"
 		geth(c)
 	})
-	r.GET("/shijian", func(c *gin.Context) {
-		tag = "base_shijian.html"
-		message = "了解一下新冠的时间线吧~"
-		messagetype = "0"
+	r.GET("/monitor", func(c *gin.Context) {
+		tag = "bot_monitor.html"
+		message = ""
+		messagetype = ""
 		geth(c)
 	})
-	r.GET("/dashujure", dashujure)
-	r.GET("/dashuju", dashuju)
-	r.GET("/xdlog", xdlog)
-	r.GET("/yfmanager", yfmanager)
 	r.GET("/signin", func(c *gin.Context) {
 		tag = "user_signin.html"
 		message = "请登录账户！"
 		messagetype = "0"
 		geth(c)
 	})
+	r.GET("/shijian", func(c *gin.Context) {
+		tag = "base_shijian.html"
+		message = "了解一下新冠的时间线吧~"
+		messagetype = "0"
+		geth(c)
+	})
+
+	r.GET("/Automatic_dispensing", func(c *gin.Context) {
+		get_control_panel(c, 3)
+
+	})
+	r.GET("/Disindection", func(c *gin.Context) {
+		get_control_panel(c, 2)
+	})
+	r.GET("/Muiti_win_UAV_patrol", func(c *gin.Context) {
+		get_control_panel(c, 1)
+	})
+	r.GET("/Self_positioning_anti_epidemic", func(c *gin.Context) {
+		get_control_panel(c, 0)
+	})
+
+	r.GET("/dashujure", dashujure)
+	r.GET("/dashuju", dashuju)
+	r.GET("/xdlog", xdlog)
+	r.GET("/yfdata", yfdata)
+	r.GET("/log", log)
+	r.GET("/yfmanager", yfmanager)
 
 	//--------------------POST------------------
 	r.POST("/dashuju", mycity)
@@ -243,4 +266,15 @@ func mycity(c *gin.Context) {
 	}
 	fmt.Println(Words, "-----")
 	Thecity = string(Words)
+}
+func get_control_panel(c *gin.Context, i int) {
+	c.HTML(http.StatusOK, "bot_control_panel.html", gin.H{
+		"message":     message,
+		"uname":       uname,
+		"messagetype": messagetype,
+		"messagenum":  messagenum,
+		"botname":     botname[i],
+		"body":        *getlog(i),
+	})
+
 }

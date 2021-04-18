@@ -1,0 +1,97 @@
+{{template "base.html" . }}
+{{define "title"}}
+消毒机器人控制面板
+{{ end }}
+{{define "header"}}
+<h1>消毒机器人控制面板</h1>
+{{ end }}
+{{define "content"}}
+<div style="height: 1rem;">
+</div>
+<div class="layui-contenter">
+    <div class="layui-row">
+        <div class="layui-col-md8 center minititle">
+			---------{{.botname}}监控摄像头
+            <video width=95% height=auto controls>
+                <source src="/static/test.m4v" type="video/mp4">
+                您的浏览器不支持Video标签
+            </video>
+        </div>
+        <div class="layui-col-md4 "  >
+            <div class="" style="font-size: 1.3rem;">
+                <div class="" style="height: 1.9rem;">
+                </div>
+                <fieldset class="" style="height:28.2rem;width: 85%;">
+                    <legend>
+                        <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;当前状况&nbsp;&nbsp;</h2>
+                    </legend>
+                    <div class="layui-field-box " style="line-height: 3rem;">
+                        <div  style="border:green;">
+                            <div class="layui-row">
+                                <div class="layui-col-md6 ">
+                                    当前状态
+                                </div>
+                                <div class="layui-col-md6">
+                                    ：充电中！
+                                </div>
+                            </div>
+                            <div class="layui-row">
+                                <div class="layui-col-md6 ">
+                                    位置
+                                </div>
+                                <div class="layui-col-md6">
+                                    ：(253,618)
+                                </div>
+                            </div>
+                            <div class="layui-row">
+                                <div class="layui-col-md6 ">
+									充电进度
+                                </div>
+                                <div class="layui-col-md6" style="color: green;">
+                                    ：80%
+                                </div>
+                            </div>
+                            <div class="layui-row">
+                                <div class="layui-col-md6 ">
+									消毒药水存量
+                                </div>
+                                <div class="layui-col-md6" style="color: red;">
+                                    ：15%
+                                </div>
+                            </div>
+                            <div class="layui-row">
+                                <div class="layui-col-md6 ">
+									今日消毒进度
+                                </div>
+                                <div class="layui-col-md6" style="color: gray;">
+                                    ：60%
+                                </div>
+                            </div>
+                        </div>
+                        <br></br>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 1rem;">
+</div>
+<div class="layui-row">
+	<div class="layui-col-md10 layui-col-md-offset1">
+            <fieldset class="center" style="height:auto">
+                <legend>
+                    <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}}今日 日志&nbsp;&nbsp;</h2>
+                </legend>
+                <div class="layui-field-box">
+                    <pre class="ptext" style="height: 16rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
+                    {{.body}}
+                    </pre>
+                </div>
+            </fieldset>
+	</div>
+</div>
+<div style="height: 1.5rem;">
+
+</div>
+{{end}}

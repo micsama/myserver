@@ -1,0 +1,49 @@
+{{template "base.html" . }}
+{{define "title"}}
+机器人监控中心
+{{ end }}
+{{define "header"}}
+<h1>机器人监控中心</h1>
+{{ end }}
+{{define "content"}}
+	<div class="center" style="height: 1.5rem;">
+	</div>
+<div class="layui-contenter">
+    <div class="layui-row">
+        <div class="layui-col-md6  minititle">
+			自定位抗疫机器人
+            <video width="600" height=auto controls>
+                <source src="/static/test.m4v" type="video/mp4">
+                您的浏览器不支持Video标签
+            </video>
+        </div>
+        <div class="layui-col-md6  minititle">
+			多翼无人机抗疫巡检机器人
+            <video width="600" height=auto controls>
+                <source src="/static/test.m4v" type="video/mp4">
+                您的浏览器不支持Video标签
+            </video>
+        </div>
+    </div>
+	<div class="center" style="height: 1rem;">
+	</div>
+    <div class="layui-row">
+        <div class="layui-col-md6  minititle">
+			消毒机器人
+            <video width="600" height=auto controls>
+                <source src="/static/test.m4v" type="video/mp4">
+                您的浏览器不支持Video标签
+            </video>
+        </div>
+        <div class="layui-col-md6  minititle">
+			药房自动发药机器人
+            <video width="600" height=auto controls>
+                <source src="/static/test.m4v" type="video/mp4">
+                您的浏览器不支持Video标签
+            </video>
+        </div>
+    </div>
+	<div class="center" style="height: 3rem;">
+	</div>
+</div>
+{{end}}
