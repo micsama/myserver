@@ -19,11 +19,11 @@ var Thecity = "北京"
 func runweb() {
 	// gin.SetMode(gin.ReleaseMode)
 	wg.Add(1)
-	r := gin.Default()
-	r.Use(Checklogin())
-	r.Static("/static", "./static")  //css
+	r := gin.Default()               //定义默认路由
+	r.Use(Checklogin())              //定义中间件，每次路由都会使用
+	r.Static("/static", "./static")  //css+picture
 	r.Static("/layui", "./layui")    //css
-	r.NoRoute(func(c *gin.Context) { //404
+	r.NoRoute(func(c *gin.Context) { //404路由
 		c.HTML(http.StatusNotFound, "base_404.html", nil)
 	})
 	r.SetFuncMap(template.FuncMap{ //html  |safe
@@ -32,8 +32,7 @@ func runweb() {
 		},
 	})
 	//	r.LoadHTMLGlob("./templates/**/*") //load templates
-	r.HTMLRender = loadTemplates("./templates")
-
+	r.HTMLRender = loadTemplates("./templates") //加载并准备渲染模板
 	//-----------------GET------------------
 	r.GET("/index", func(c *gin.Context) {
 		tag = "base_index.html"
@@ -139,6 +138,7 @@ func loadTemplates(templatesDir string) multitemplate.Renderer {
 	if err != nil {
 		panic(err.Error())
 	}
+	fmt.Println(includes)
 	// 为layouts/和includes/目录生成 templates map
 	for _, include := range includes {
 		layoutCopy := make([]string, len(layouts))
@@ -174,56 +174,31 @@ func Checklogin() gin.HandlerFunc {
 }
 
 func xdlog(c *gin.Context) {
-	acc, _ = c.Cookie("acc")
-	if acc == "admin" {
-		c.HTML(http.StatusOK, "xdlog.html", gin.H{
-			"message":     "欢迎！",
-			"messagetype": "1",
-			"uname":       uname,
-		})
-	} else {
-		c.HTML(http.StatusOK, "base_index.html", gin.H{
-			"message":     "您的权限不足！正在返回首页！",
-			"messagetype": "4",
-			"uname":       uname,
-		})
-	}
+	c.HTML(http.StatusOK, "xdlog.html", gin.H{
+		"message":     "欢迎！",
+		"messagetype": "1",
+		"uname":       uname,
+	})
 }
 
 func yfdata(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
-	if acc == "admin" {
-		refreshyfdata()
-		c.JSON(http.StatusOK, gin.H{
-			"code":  0,
-			"msg":   "",
-			"count": yfcount,
-			"data":  yfdatamap,
-		})
-	} else {
-		c.HTML(http.StatusOK, "base_index.html", gin.H{
-			"message":     "您的权限不足！正在返回首页！",
-			"messagetype": "4",
-			"uname":       uname,
-		})
-	}
+	refreshyfdata()
+	c.JSON(http.StatusOK, gin.H{
+		"code":  0,
+		"msg":   "",
+		"count": yfcount,
+		"data":  yfdatamap,
+	})
 
 }
 func yfmanager(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
-	if acc == "admin" {
-		c.HTML(http.StatusOK, "bot_yaofang.html", gin.H{
-			"message":     "欢迎！",
-			"messagetype": "1",
-			"uname":       uname,
-		})
-	} else {
-		c.HTML(http.StatusOK, "base_index.html", gin.H{
-			"message":     "您的权限不足！正在返回首页！",
-			"messagetype": "4",
-			"uname":       uname,
-		})
-	}
+	c.HTML(http.StatusOK, "bot_yaofang.html", gin.H{
+		"message":     "欢迎！",
+		"messagetype": "1",
+		"uname":       uname,
+	})
 }
 func dashujure(c *gin.Context) {
 	getjson()
@@ -276,5 +251,4 @@ func get_control_panel(c *gin.Context, i int) {
 		"botname":     botname[i],
 		"body":        *getlog(i),
 	})
-
 }
