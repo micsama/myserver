@@ -22,9 +22,7 @@
 </script>
 {{if .uname}}
 <div class="layui-row">
-
     <div class="layui-col-md10 layui-col-md-offset1">
-
         <fieldset class="" style="height:auto">
             <legend>
                 <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;主面板&nbsp;&nbsp;</h2>
@@ -32,16 +30,20 @@
             <div class="layui-field-box">
                 <div class="layui-col-md2 center" style="font-size: 1.3rem;">
                     欢迎： {{.uname}}
-                    <br></br>
+                </div>
+                <div class="layui-col-md2 center" style="font-size: 1.3rem;">
                     <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">管理用户</a>
                 </div>
                 <div class="layui-col-md2 center" style="font-size: 1.3rem;">
                     <a href="/monitor" target="_top" class="layui-btn layui-btn-radius">监控中心</a>
                 </div>
+                <br></br>
 
             </div>
         </fieldset>
     </div>
+</div>
+<div style=" height:1rem">
 
 </div>
 <h2 class="center" style="line-height:3rem">抗疫机器人控制台</h2>
@@ -56,8 +58,8 @@
             </legend>
             <div class="layui-field-box">
                 <div class="layui-col-md7 " style="font-size: 1.2rem ;border:green;">
-						<li style="color: green;">电量剩余：80%</li>
-						<li style="color: purple;">没有紧急情况，运转正常</li>
+                    <li style="color: green;">电量剩余：80%</li>
+                    <li style="color: purple;">没有紧急情况，运转正常</li>
                 </div>
 
                 <div class="layui-col-md5 center" style="line-height: 5rem;">
@@ -85,22 +87,17 @@
             </legend>
             <div class="layui-field-box">
                 <div class="layui-col-md7 " style="font-size: 1.2rem ;border:green;">
-						<li style="color: green;">电量剩余：90%</li>
-						<li style="color: red;"> 巡检线路出现未佩戴口罩人员！</li>
+                    <li style="color: green;">电量剩余：90%</li>
+                    <li style="color: red;"> 巡检线路出现未佩戴口罩人员！</li>
                 </div>
-
                 <div class="layui-col-md5 center" style="line-height: 5rem;">
-
                     <div class="layui-col-md11  layui-col-xs6 myb">
-
                         <a href="/log?id=0" target="_top" class="layui-btn layui-btn-radius">查看日志</a>
                     </div>
                     <div class="layui-col-md11 layui-col-xs6 myb">
-
                         <a href="/yfmanager" target="_top" class="layui-btn layui-btn-radius">机器人简介</a>
                     </div>
                     <div class="layui-col-md12 layui-col-xs6 myb">
-
                         <a href="/Muiti_win_UAV_patrol" target="_top" class="layui-btn layui-btn-radius">机器人控制面板</a>
                     </div>
                 </div>
@@ -108,6 +105,9 @@
             </div>
         </fieldset>
     </div>
+</div>
+<div style="height: 0.5rem">
+
 </div>
 <div class="layui-row">
     <div class="layui-col-md5 layui-col-md-offset1">
@@ -117,14 +117,8 @@
             </legend>
             <div class="layui-field-box">
                 <div class="layui-col-md7 " style="font-size: 1.2rem ;border:green;">
-
-					<!-- 今日消毒成功！<br></br> -->
-					<!-- 电池电量不足！充电失败！<br></br> -->
-                    <!-- <ul> -->
-						<li style="color: red;">电量剩余10%,充电路线被阻碍！！</li>
-                        <li style="color: green;">今日消毒成功！</li>
-                    <!--  -->
-                    <!-- </ul> -->
+                    <li style="color: red;">电量剩余10%,充电路线被阻碍！！</li>
+                    <li style="color: green;">今日消毒成功！</li>
                 </div>
                 <div class="layui-col-md5 center" style="line-height: 5rem;">
 
@@ -152,8 +146,8 @@
             </legend>
             <div class="layui-field-box">
                 <div class="layui-col-md7 " style="font-size: 1.2rem ;border:green;">
-						<li style="color: green;">电量剩余：70%</li>
-						<li style="color: red;"> 阿司匹林 存量不足！</li>
+                    <li style="color: green;">电量剩余：70%</li>
+                    <li style="color: red;"> 阿司匹林 存量不足！</li>
                 </div>
                 <div class="layui-col-md5 center" style="line-height: 5rem;">
 

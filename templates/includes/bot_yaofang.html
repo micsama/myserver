@@ -31,7 +31,7 @@ layui.use('layer', function(){
 			elem: "#demo",
 			height: 612,
 			limit:40,
-			url: "/yfdata/",
+			url: "/yfdata/",//从目标页面获取JSON数据
 			page: true,
 			loading: true,
 			title: "药房信息表",
@@ -39,8 +39,8 @@ layui.use('layer', function(){
 					{ field: "Checkbox", title: "", type: "checkbox", fixed: "left" },
 					// { field: "Id", title: "ID", type: "number", sort: true  },
 					{ field: "Name", title: "药品名称", sort: true,  },
-					{ field: "Count", title: "药品存量", sort: true },
-					{ field: "Otherinf", title: "药品其他信息", sort: true, style: "text" },
+					{ field: "Count", title: "药品余量", sort: true },
+					{ field: "Otherinf", title: "药品简介", sort: false, style: "text" },
 				],],
 		});
 table.on('toolbar(test)',function(obj){
@@ -50,7 +50,6 @@ table.on('toolbar(test)',function(obj){
 		case 'add':
 layer.open({
 	type:2,
-	time:6000,
 	shade:0.5,
 	shadeClose:true,
 	content:'/addnew',
