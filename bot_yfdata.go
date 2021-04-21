@@ -2,18 +2,19 @@ package main
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
-
-	"github.com/gin-gonic/gin"
 )
 
+var sellout string = ""
 var yfcount int
 
 type yfdatasql struct {
 	Name     string
 	Count    int
 	Otherinf string
+	Minimum  int
 }
 
 var yfdatamap []yfdatasql
@@ -35,8 +36,19 @@ func addnew(c *gin.Context) {
 func refreshyfdata() {
 	userdb.Table("yfdatasql")
 	userdb.Find(&yfdatamap)
-	fmt.Println(yfdatamap)
 	userdb.Model(yfdatasql{}).Count(&yfcount)
 	userdb.Table("users")
+	sellout = ""
+	for _, p := range yfdatamap {
+		if p.Count <= p.Minimum {
+			sellout = sellout + p.Name + " 余量为 " + strconv.Itoa(p.Count) + " !\n"
+		}
+	}
+	if sellout != "" {
+		sellout = "请及时补充以下药品！\n" + sellout
+	} else {
+		sellout = "目前药房存量充足！"
+	}
+	fmt.Println(sellout)
 
 }

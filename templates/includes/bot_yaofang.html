@@ -37,9 +37,9 @@ layui.use('layer', function(){
 			title: "药房信息表",
 			cols: [[
 					{ field: "Checkbox", title: "", type: "checkbox", fixed: "left" },
-					// { field: "Id", title: "ID", type: "number", sort: true  },
 					{ field: "Name", title: "药品名称", sort: true,  },
-					{ field: "Count", title: "药品余量", sort: true },
+					{ field: "Count", title: "药品余量(盒)", sort: true },
+					{ field: "Minimum", title: "药品保底存量", sort: true },
 					{ field: "Otherinf", title: "药品简介", sort: false, style: "text" },
 				],],
 		});

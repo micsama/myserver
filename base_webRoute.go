@@ -49,12 +49,6 @@ func runweb() {
 		tag = "bot_yaofang_addnew.html"
 		geth(c)
 	})
-	r.GET("/home", func(c *gin.Context) {
-		tag = "user_home.html"
-		message = "欢迎来到控制台！"
-		messagetype = "1"
-		geth(c)
-	})
 	r.GET("/", func(c *gin.Context) {
 		if c.Query("id") == "-1" {
 			logout(c)
@@ -110,6 +104,7 @@ func runweb() {
 		get_control_panel(c, 0)
 	})
 
+	r.GET("/home", home)
 	r.GET("/dashujure", dashujure)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
@@ -195,9 +190,10 @@ func yfdata(c *gin.Context) {
 func yfmanager(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
 	c.HTML(http.StatusOK, "bot_yaofang.html", gin.H{
-		"message":     "欢迎！",
+		"message":     "欢迎！:sellout,",
 		"messagetype": "1",
 		"uname":       uname,
+		"sellout":     sellout,
 	})
 }
 func dashujure(c *gin.Context) {
@@ -251,4 +247,14 @@ func get_control_panel(c *gin.Context, i int) {
 		"botname":     botname[i],
 		"body":        *getlog(i),
 	})
+}
+func home(c *gin.Context) {
+	refreshyfdata()
+	c.HTML(http.StatusOK, "user_home.html", gin.H{
+		"message":     "欢迎来到控制台",
+		"messagetype": "1",
+		"uname":       uname,
+		"sellout":     sellout,
+	})
+
 }

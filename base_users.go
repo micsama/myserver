@@ -59,6 +59,7 @@ func signin(c *gin.Context) {
 			sum = sha256.Sum256([]byte(login.Password))
 			if string(sum[:]) == u.Password {
 				message = "登陆成功！"
+				refreshyfdata()
 				messagetype = "1"
 				tag = "user_home.html"
 				uname = " " + login.Username + " "
@@ -78,6 +79,7 @@ func signin(c *gin.Context) {
 			"messagetype": messagetype,
 			"m":           login.Password,
 			"c":           sum,
+			"sellout":     sellout,
 		})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
