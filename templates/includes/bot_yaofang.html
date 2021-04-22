@@ -6,6 +6,10 @@
 <h1>药房机器人管理中心</h1>
 {{ end }}
 {{define "content"}}
+<div class="center ptext">
+	双击某一行进行补货
+	
+</div>
 <div class="layui-row" style="padding-top: 0.5rem">
 	<div class="layui-col-md10 layui-col-md-offset1">
 		<table id="demo" lay-filter="test"></table>
@@ -13,12 +17,9 @@
 </div>
 <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
-    <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
-    <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
-    <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+    <button class="layui-btn layui-btn-sm" lay-event="add">添加新药物</button>
   </div>
 </script>
-
 <script>
 layui.use('layer', function(){
   var layer = layui.layer;
@@ -36,13 +37,38 @@ layui.use('layer', function(){
 			loading: true,
 			title: "药房信息表",
 			cols: [[
-					{ field: "Checkbox", title: "", type: "checkbox", fixed: "left" },
-					{ field: "Name", title: "药品名称", sort: true,  },
-					{ field: "Count", title: "药品余量(盒)", sort: true },
-					{ field: "Minimum", title: "药品保底存量", sort: true },
-					{ field: "Otherinf", title: "药品简介", sort: false, style: "text" },
+					{ field: "Num",  type: "numbers",width:"34" },
+					{ field: "Id", title: "药品Id" ,width:"70"},
+					{ field: "Name", title: "药品名称", sort: true,width:"160"  },
+					{ field: "Count", title: "药品余量(盒)", sort: true  ,width:"140"},
+					{ field: "Minimum", title: "药品保底存量", sort: true  ,width:"140"},
+					{ field: "Otherinf", title: "药品简介", sort: false, style: "text"  ,width:"auto"},
 				],],
 		});
+table.on('rowDouble(test)', function(obj){
+	console.log(obj.tr)
+	console.log(obj.data)
+	var num,numname
+			layer.prompt({
+				formType:0,
+				title:'请输入进货数量：(负数可以出货)',
+				value:'',
+				area:['70px','40px'],
+			},function(value,index,elem){
+				if (isNaN(value)){
+					alert("请输入正确的数字！")
+				}else{
+					num=value
+				id=obj.data.Id
+				layer.close(index)
+			    $.ajax({
+				    type: "GET",
+					url: "/updatayf?num=" + num+"&id="+id,
+				})
+					setTimeout(table.reload("demo"),500)
+				}
+			})
+});
 table.on('toolbar(test)',function(obj){
 	var checkStatus=table.checkStatus(obj.config.id);
 			layer.msg('add');
@@ -54,15 +80,13 @@ layer.open({
 	shadeClose:true,
 	content:'/addnew',
 	resize:false,
-	area:['300px','419px'],
+	area:['300px','498px'],
+	end:setTimeout(table.reload("demo"),2000),
 })
-
 			break;
 			case 'delete':
-			layer.msg('del');
 			break;
 			case 'update':
-			layer.msg('up');
 			break;
 	};
 });

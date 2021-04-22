@@ -109,15 +109,15 @@ func runweb() {
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
 	r.GET("/yfdata", yfdata)
-	r.GET("/log", log)
 	r.GET("/yfmanager", yfmanager)
-
+	r.GET("/updatayf", updatayf)
+	r.GET("/log", datelog)
 	//--------------------POST------------------
+	r.POST("/log", datelog)
 	r.POST("/dashuju", mycity)
 	r.POST("/addnew", addnew)
 	r.POST("/register", register)
 	r.POST("/home", signin)
-
 	//---------Run---------------------/
 	r.Run(":13488")
 	wg.Done()
@@ -190,7 +190,7 @@ func yfdata(c *gin.Context) {
 func yfmanager(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
 	c.HTML(http.StatusOK, "bot_yaofang.html", gin.H{
-		"message":     "欢迎！:sellout,",
+		"message":     "欢迎！",
 		"messagetype": "1",
 		"uname":       uname,
 		"sellout":     sellout,
@@ -247,7 +247,6 @@ func get_control_panel(c *gin.Context, i int) {
 		"messagenum":  messagenum,
 		"bot":         i,
 		"botname":     botname[i],
-		"body":        *getlog(i),
 		"status":      statusmap[i],
 	})
 }

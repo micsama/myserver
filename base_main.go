@@ -11,7 +11,6 @@ import (
 )
 
 var testing bool = true
-var tablename = "users"
 var database = "data/data.db"
 var myurl string
 var tag = "index.html"                      //default web
@@ -34,6 +33,7 @@ func initsql() {
 	wg.Add(1)
 	var dberr error
 	userdb, dberr = gorm.Open("sqlite3", database)
+	// userdb.AutoMigrate(Newlog("adrlog"), Newlog("drlog"), Newlog("mwuprlog"), Newlog("spaerlog"))
 	if dberr != nil {
 		fmt.Println(dberr)
 	} else {
@@ -42,5 +42,5 @@ func initsql() {
 	wg.Done()
 }
 func (u User) TableName() string {
-	return tablename
+	return "users"
 }

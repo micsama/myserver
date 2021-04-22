@@ -6,25 +6,30 @@
 <h1>{{.botname}}日志中心</h1>
 {{ end }}
 {{define "content"}}
+<div class="center" style="height: 0.5rem;">
+</div>
+<div class="layui-col-md6 layui-col-md-offset3" style="height: 3.5rem;">
+    <label class="layui-form-label" for="test" style="font-size: 1.2rem;width: auto;">筛选日期：</label>
+    <input type="text" style="width: 20rem;" class="layui-input" id="test" />
+</div>
 <div class="center" style="height: 2rem;">
-	读取自日志文件
 </div>
 <div class="layui-content">
     <div class="layui-row">
         <div class="layui-col-md10 layui-col-md-offset1">
             <div class="layui-col-md10 layui-col-md-offset1">
-					<div class="layui-col-md3 layui-col-xs4 myb">
-						<a href="/log?id=0" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 0}}layui-btn-disabled {{end}}">自定位抗疫机器人</a>
-					</div>
-					<div class="layui-col-md3 layui-col-xs4 myb">
-						<a href="/log?id=1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 1}}layui-btn-disabled {{end}}">多翼无人机抗议巡检机器人</a>
-					</div>
-					<div class="layui-col-md3 layui-col-xs4 myb">
-						<a href="/log?id=2" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 2}}layui-btn-disabled {{end}}">消毒机器人</a>
-					</div>
-					<div class="layui-col-md3 layui-col-xs4 myb">
-						<a href="/log?id=3" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 3}}layui-btn-disabled {{end}}">药房自动发药机器人</a>
-					</div>
+                <div class="layui-col-md3 layui-col-xs4 myb">
+                    <a href="/log?id=0&value=-1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 0}}layui-btn-disabled {{end}}">自定位抗疫机器人</a>
+                </div>
+                <div class="layui-col-md3 layui-col-xs4 myb">
+                    <a href="/log?id=1&value=-1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 1}}layui-btn-disabled {{end}}">多翼无人机抗议巡检机器人</a>
+                </div>
+                <div class="layui-col-md3 layui-col-xs4 myb">
+                    <a href="/log?id=2&value=-1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 2}}layui-btn-disabled {{end}}">消毒机器人</a>
+                </div>
+                <div class="layui-col-md3 layui-col-xs4 myb">
+                    <a href="/log?id=3&value=-1" target="_top" class="layui-btn layui-btn-radius {{if eq .bot 3}}layui-btn-disabled {{end}}">药房自动发药机器人</a>
+                </div>
             </div>
         </div>
     </div>
@@ -36,14 +41,36 @@
                 </legend>
                 <div class="layui-field-box">
                     <pre class="ptext" style="height: 40rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
-                    {{.body}}
+                    {{- .body -}}
                     </pre>
                 </div>
             </fieldset>
         </div>
     </div>
 </div>
-<div class="" style="height: 2rem;">
-
+<div class="">
+    <script charset="utf-8">
+        layui.use('laydate', function() {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#test',
+                type: 'date',
+				theme:'molv',
+				calendar:true,
+                range: '~',
+				value:{{.value}},
+				isInitValue:true,
+				min:'2020-10-10',
+				max:40,
+				done:function(value,date,endDate){
+			    $.ajax({
+				    type: "GET",
+					url: "/log?value="+value,
+					success:location.reload()
+				})
+				}
+            })
+        })
+    </script>
 </div>
 {{end}}

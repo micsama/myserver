@@ -11,6 +11,7 @@ var sellout string = ""
 var yfcount int
 
 type yfdatasql struct {
+	Id       int
 	Name     string
 	Count    int
 	Otherinf string
@@ -24,20 +25,21 @@ func addnew(c *gin.Context) {
 	a.Name = c.PostForm("name")
 	a.Count, _ = strconv.Atoi(c.PostForm("num"))
 	a.Otherinf = c.PostForm("inf")
+	a.Minimum, _ = strconv.Atoi(c.PostForm("min"))
 	fmt.Println(a)
-	userdb.Table("yfdatasql")
-	if err := userdb.Create(a).Error; err != nil {
+	if err := userdb.Create(&a).Error; err != nil {
 		fmt.Println("插入失败", err)
-		userdb.Table("users")
+	} else {
+		fmt.Println(err)
 	}
-	c.HTML(http.StatusOK, "bot_yaofang_addnew_ok.html", gin.H{})
+	c.HTML(http.StatusOK, "bot_yaofang_addnew_ok.html", gin.H{
+		"message": "添加成功！",
+	})
 
 }
 func refreshyfdata() {
-	userdb.Table("yfdatasql")
 	userdb.Find(&yfdatamap)
 	userdb.Model(yfdatasql{}).Count(&yfcount)
-	userdb.Table("users")
 	sellout = ""
 	for _, p := range yfdatamap {
 		if p.Count <= p.Minimum {
@@ -51,4 +53,14 @@ func refreshyfdata() {
 	}
 	fmt.Println(sellout)
 
+}
+func updatayf(c *gin.Context) {
+	id, _ := strconv.Atoi(c.Query("id"))
+	num, _ := strconv.Atoi(c.Query("num"))
+	var u yfdatasql
+	userdb.Where("id = ?", id).Take(&u)
+	fmt.Println(id)
+	fmt.Println(u)
+	num = num + u.Count
+	userdb.Model(&u).Update("count", num)
 }
