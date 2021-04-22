@@ -4,12 +4,11 @@ import (
 	"crypto/sha256"
 	"fmt"
 	_ "fmt"
+	"github.com/gin-contrib/multitemplate"
+	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
 	"path/filepath"
-
-	"github.com/gin-contrib/multitemplate"
-	"github.com/gin-gonic/gin"
 )
 
 var Words []rune
@@ -91,6 +90,7 @@ func runweb() {
 	})
 
 	r.GET("/Automatic_dispensing", func(c *gin.Context) {
+		refreshyfdata()
 		get_control_panel(c, 3)
 
 	})
@@ -203,7 +203,6 @@ func dashujure(c *gin.Context) {
 }
 func dashuju(c *gin.Context) {
 	a := initjson()
-
 	c.HTML(http.StatusOK, "base_dashuju.html", gin.H{
 		"message":     "今日速报！",
 		"messagetype": "0",
@@ -227,7 +226,6 @@ func mycity(c *gin.Context) {
 	Thecity = c.Query("mycity")
 	Words = ([]rune)(Thecity)
 	fmt.Println(Thecity, "-----")
-
 	for i, c := range Words {
 		fmt.Println("--> ", c)
 		if c == 30465 || c == 24066 { //江苏“省”南京“市”的“省”和“市”字的编码
@@ -239,11 +237,15 @@ func mycity(c *gin.Context) {
 	Thecity = string(Words)
 }
 func get_control_panel(c *gin.Context, i int) {
+	initstatus()
+	// s, _ := json.Marshal(statusmap[i])
+
 	c.HTML(http.StatusOK, "bot_control_panel.html", gin.H{
 		"message":     message,
 		"uname":       uname,
 		"messagetype": messagetype,
 		"messagenum":  messagenum,
+		"bot":         i,
 		"botname":     botname[i],
 		"body":        *getlog(i),
 		"status":      statusmap[i],

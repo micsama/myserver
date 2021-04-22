@@ -45,7 +45,7 @@ func refreshyfdata() {
 		}
 	}
 	if sellout != "" {
-		sellout = "请及时补充以下药品！\n" + sellout
+		sellout = "以下药品短缺！\n" + sellout
 	} else {
 		sellout = "目前药房存量充足！"
 	}
