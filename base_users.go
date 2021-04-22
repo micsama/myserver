@@ -60,6 +60,7 @@ func signin(c *gin.Context) {
 			if string(sum[:]) == u.Password {
 				message = "登陆成功！"
 				refreshyfdata()
+				initstatus()
 				messagetype = "1"
 				tag = "user_home.html"
 				uname = " " + login.Username + " "

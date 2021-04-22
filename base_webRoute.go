@@ -246,10 +246,12 @@ func get_control_panel(c *gin.Context, i int) {
 		"messagenum":  messagenum,
 		"botname":     botname[i],
 		"body":        *getlog(i),
+		"status":      statusmap[i],
 	})
 }
 func home(c *gin.Context) {
 	refreshyfdata()
+	initstatus()
 	c.HTML(http.StatusOK, "user_home.html", gin.H{
 		"message":     "欢迎来到控制台",
 		"messagetype": "1",

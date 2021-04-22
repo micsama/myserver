@@ -11,7 +11,6 @@ import (
 )
 
 var testing bool = true
-
 var tablename = "users"
 var database = "data/data.db"
 var myurl string

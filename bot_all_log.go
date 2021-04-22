@@ -18,7 +18,7 @@ const (
 )
 
 var f = [...]string{"Self_positioning_anti_epidemic_robot.log", "Multi_wing_UAV_patrol_robot.log", "Disinfection_robot.log", "Automatic_dispensing_robot.log"}
-var botname = [...]string{"自定位抗疫机器人", "多翼无人机抗议巡检机器人", "消毒机器人", "药房自动发药机器人"}
+var botname = [...]string{"自定位抗疫机器人", "多翼无人机抗疫巡检机器人", "消毒机器人", "药房自动发药机器人"}
 
 func getlog(i int) *string {
 	logname := f[i]
