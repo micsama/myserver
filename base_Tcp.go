@@ -7,11 +7,10 @@ import (
 	"time"
 )
 
-const ip string = "localhost:13487"
+const ip string = "localhost:13482"
 const Maxsize = 512
 
 // TCP service
-
 func initlisten() {
 	wg.Add(1)
 	// 1.监听本地端口
@@ -35,10 +34,8 @@ func initlisten() {
 			s := client_conn.RemoteAddr().String()
 			fmt.Println("-->Connect from :", s, "\nAt:", mytime)
 		}
-
 		// 3.接收客户端信息
 		var msg [Maxsize]byte
-
 		n, err := client_conn.Read(msg[:])
 		if err != nil {
 			fmt.Println("Read error of:", err)

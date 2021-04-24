@@ -8,6 +8,14 @@ body {
     background-size: cover;
 }
 
+.mylog {
+    font-size: 1.4rem;
+    height: 40rem;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
 ul {
     right: 0px;
     padding: 10px;
@@ -33,7 +41,7 @@ hr {
     font-size: 1.8rem;
     line-height: 3rem;
     text-align: center;
-    text-indent:3rem;
+    text-indent: 3rem;
 }
 
 .myb {

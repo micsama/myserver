@@ -35,7 +35,6 @@ func addnew(c *gin.Context) {
 	c.HTML(http.StatusOK, "bot_yaofang_addnew_ok.html", gin.H{
 		"message": "添加成功！",
 	})
-
 }
 func refreshyfdata() {
 	userdb.Find(&yfdatamap)
