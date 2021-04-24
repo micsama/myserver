@@ -1,6 +1,7 @@
 *.dll
 *.m4v
 /static/*.m4v
+tree.txt
 *.db
 fymap2020_data.d.json
 *.so
