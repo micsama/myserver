@@ -4,11 +4,12 @@ import (
 	"crypto/sha256"
 	"fmt"
 	_ "fmt"
-	"github.com/gin-contrib/multitemplate"
-	"github.com/gin-gonic/gin"
 	"html/template"
 	"net/http"
 	"path/filepath"
+
+	"github.com/gin-contrib/multitemplate"
+	"github.com/gin-gonic/gin"
 )
 
 var Words []rune
@@ -247,7 +248,7 @@ func get_control_panel(c *gin.Context, i int) {
 		"messagenum":  messagenum,
 		"bot":         i,
 		"botname":     botname[i],
-		"status":      statusmap[i],
+		"status":      status(i),
 	})
 }
 func home(c *gin.Context) {
