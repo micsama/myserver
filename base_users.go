@@ -46,6 +46,7 @@ func register(c *gin.Context) {
 
 }
 func signin(c *gin.Context) {
+	userdb = userdb.Table("users")
 	var login, u User
 	//从form输入绑定到login
 	if err := c.ShouldBind(&login); err == nil {

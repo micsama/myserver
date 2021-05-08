@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 var sellout string = ""
@@ -37,6 +38,7 @@ func addnew(c *gin.Context) {
 	})
 }
 func refreshyfdata() {
+	userdb = userdb.Table("yfdatasqls")
 	userdb.Find(&yfdatamap)
 	userdb.Model(yfdatasql{}).Count(&yfcount)
 	sellout = ""
@@ -57,6 +59,7 @@ func updatayf(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Query("id"))
 	num, _ := strconv.Atoi(c.Query("num"))
 	var u yfdatasql
+	userdb = userdb.Table("yfdatasqls")
 	userdb.Where("id = ?", id).Take(&u)
 	fmt.Println(id)
 	fmt.Println(u)
