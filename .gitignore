@@ -3,6 +3,7 @@
 /static/*.m4v
 tree.txt
 /data/data.db
+mykey.json
 *.db
 fymap2020_data.d.json
 *.so
