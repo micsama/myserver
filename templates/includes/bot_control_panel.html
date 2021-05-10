@@ -26,10 +26,10 @@
                 <div class="layui-col-md10 layui-col-md-offset1">
                     <fieldset class="center" style="height:auto">
                         <legend>
-                            <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}} 今日 日志&nbsp;&nbsp;</h2>
+                            <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}}日志&nbsp;&nbsp;</h2>
                         </legend>
-                        <div class="layui-field-box">
-                            <pre class="ptext" style="height: 25rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
+                        <div class="layui-field-box" style="font-size: 1rem;text-align: left;">
+                            <pre class="" style="height: 25rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
                             {{- .body -}}
                             </pre>
                         </div>
@@ -90,15 +90,20 @@
     <div class="layui-col-md10 layui-col-md-offset1">
         <fieldset class="center" style="height:auto">
             <legend>
-                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}}今日 日志&nbsp;&nbsp;</h2>
+                <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;{{.botname}}日志&nbsp;&nbsp;</h2>
             </legend>
             <div class="layui-field-box">
-                <pre class="ptext" style="height: 16rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
+                <pre class="" style="height: 16rem;overflow-y: scroll;word-wrap: break-word;word-break: break-all;">
                 {{- .body -}}
                 </pre>
             </div>
         </fieldset>
     </div>
+</div>
+{{end}}
+{{if eq .bot 1}}
+<div class="center">
+<img src="/static/pic/wss.jpg" alt="">
 </div>
 {{end}}
 <div style="height: 1.5rem;">

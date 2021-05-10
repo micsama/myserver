@@ -249,6 +249,7 @@ func get_control_panel(c *gin.Context, i int) {
 		"bot":         i,
 		"botname":     botname[i],
 		"status":      status(i),
+		"body":        todaylog(i),
 	})
 }
 func home(c *gin.Context) {

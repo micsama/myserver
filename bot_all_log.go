@@ -3,9 +3,9 @@ package main
 
 import (
 	"fmt"
-	_ "fmt"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm"
@@ -38,6 +38,7 @@ type ry struct {
 	Skm   string
 }
 
+var timenow time.Time
 var botname = [...]string{"自定位抗疫机器人", "抗疫空中四旋翼机器人", "消毒机器人", "药房自动发药机器人"}
 var logname = [...]string{"spaerlog", "mwuprlog", "drlog", "adrlog"}
 var mylog = ""
@@ -96,6 +97,7 @@ func datelog2(c *gin.Context) {
 }
 
 func datelog(c *gin.Context) {
+
 	var logs []onelog
 	body = ""
 	value1 := c.Query("value")
@@ -138,6 +140,39 @@ func datelog(c *gin.Context) {
 	}
 }
 
+func todaylog(i int) string {
+	body = ""
+	timenow = time.Now()
+	date1 := timenow.Format("2006-01-02")
+	fmt.Println(date1)
+	if i == 1 {
+		var tds []td
+		var rys []ry
+		userdb = userdb.Table("rylog")
+		userdb.Where("date == ?", date1).Find(&rys)
+		userdb = userdb.Table("tdlog")
+		userdb.Where("date == ?", date1).Find(&tds)
+		body = "人员日志：\n"
+		body = body + "日期 \t\t时间\t姓名\t联系方式\t\t苏康码状态\n"
+		for _, p := range rys {
+			body = body + p.Date + "\t" + p.Time + "\t" + p.Name + "\t" + strconv.Itoa(p.Phone) + "\t" + p.Skm + "\n"
+		}
+		body = body + "\n运送信息：\n日期 \t\t时间\t名称\t数量\t运送地区\n"
+		for _, p := range tds {
+			body = body + p.Date + "\t" + p.Time + "\t" + p.Name + "\t" + strconv.Itoa(p.Num) + "\t" + p.Area + "\n"
+		}
+	} else {
+		body = body + "今日日志："
+		var logs []onelog
+		mylog = logname[bot]
+		userdb = userdb.Table(mylog)
+		userdb.Where("date = ? ", date1).Find(&logs)
+		for _, p := range logs {
+			body = body + p.Log + "\n"
+		}
+	}
+	return body
+}
 func (u onelog) TableName() string {
 	fmt.Println("table--->" + mylog)
 	return mylog
