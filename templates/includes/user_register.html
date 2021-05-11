@@ -7,21 +7,49 @@
 {{ end }}
 {{define "content"}}
 <script>
+    var flag1 = false;
+    var flag2 = true;
+
+    function load() {
+
+        document.getElementById("sms").onclick();
+    }
+
+    function SendOk() {
+        console.log("ok")
+        layer.alert('发送成功！', {
+            icon: 1
+        });
+    }
+
+    function SendSms() {
+        var phone1 = document.getElementById("phone");
+        var phone = phone1.value;
+        SendOk();
+        // $.get("/SendSms?type=1&phone=" + phone, SendOk)
+    }
+
     function validate() {
         var pw1 = document.getElementById("password").value;
         var pw2 = document.getElementById("password1").value;
-		if(pw1){
-        if (pw1 == pw2) {
-            document.getElementById("tishi").innerHTML = "<font color='green'>两次密码相同</font>";
-            document.getElementById("submit").disabled = false;
+        if (pw1) {
+            if (pw1 == pw2) {
+                document.getElementById("comf").style.backgroundColor = "green";
+                flag1 = true;
+            } else {
+                document.getElementById("comf").style.backgroundColor = "red";
+                flag1 = false;
+            }
+
         } else {
-            document.getElementById("tishi").innerHTML = "<font color='red'>两次密码不相同</font>";
+            document.getElementById("comf").style.backgroundColor = "pink";
+        }
+        if (flag1 && flag2) {
+            document.getElementById("submit").disabled = false;
+
+        } else {
             document.getElementById("submit").disabled = true;
         }
-
-		}else{
-            document.getElementById("tishi").innerHTML = "<font color='green'>请输入密码</font>";
-		}
     }
     setInterval("validate()", "1000");
 </script>
@@ -38,15 +66,15 @@
         <div class="layui-col-md4 layui-col-xs " style="height: 1px;">
 
         </div>
-        <div class="layui-col-md4    layui-col-xs10 center  ">
+        <div class="layui-col-md5    layui-col-xs10 center  ">
             <div class="center">
-                <img src="/static/pic/xiong.png" alt="" style="width:20rem">
+                <img src="/static/pic/xiong.png" alt="" style="width:23rem">
             </div>
             <div style="width:20% ;background-color:red;display:inline-block">
             </div>
             <div class="center" style="margin:0 auto;width:80% ;display:inline-block">
                 <form class="layui-form layui-form-pane" style="font-size:normal" action="/register" method="POST">
-                    <br></br>
+                    <br>
                     <div class="layui-form-item">
                         <label class="layui-form-label" for="username">用户名：</label>
                         <div class="layui-input-inline">
@@ -61,13 +89,26 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label" for="password1">确认密码：</label>
+                        <label class="layui-form-label" for="password1" id="comf">确认密码：</label>
                         <div class="layui-input-inline">
                             <input class="layui-input" type="password" name="password1" id="password1" lay-verify="required" placeholder="请确认你的密码" required />
                         </div>
                     </div>
-                    <span id="tishi" style="font-size: 1.4rem;"></span>
-					<br></br>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" for="phone">手机号：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" lay-verify="required" placeholder="请输入手机号" name="phone" id="phone" required />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="layui-form-item">
+                        <div class="layui-btn layui-btn-radius" id="sms" onclick="SendSms()">发送验证码</div>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" type="text" lay-verify="required" placeholder="请输入验证码" name="vcode" id="vcode" required />
+                        </div>
+                        <br>
+                    </div>
+                    <br></br>
                     <button class="layui-btn layui-btn-radius" id="submit" lay-filter="formDemo" type="submit"><i class="layui-icon">&#xe654;</i> 立即注册！！</button>
                     <br></br>
                 </form>
@@ -78,6 +119,21 @@
     </div>
 </div>
 
+<script charset="utf-8">
+    function SendOk() {
+        console.log("ok")
+        layer.alert('发送成功！', {
+            icon: 1
+        });
+    }
+
+    function SendSms() {
+        var phone1 = document.getElementById("phone");
+        var phone = phone1.value;
+        // SendOk()
+        $.get("/SendSms?type=1&phone=" + phone, SendOk)
+    }
+</script>
 
 </body>
 {{ end }}

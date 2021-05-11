@@ -2,26 +2,59 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"math/rand"
+	"os"
+	"strconv"
+	"time"
 
+	"github.com/gin-gonic/gin"
+	jsoniter "github.com/json-iterator/go"
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/errors"
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/profile"
-	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common/regions"
-	cvm "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/cvm/v20170312"
+	sms "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/sms/v20190711" //引入sms
 )
 
-func mailc(i int) bool {
-	credential := common.NewCredential("secretId", "secretKey")
-	client, _ := cvm.NewClient(credential, regions.Guangzhou, profile.NewClientProfile())
-	request := cvm.NewDescribeInstancesRequest()
-	response, err := client.DescribeInstances(request)
+const etime = "3"
+
+func Rsend(c *gin.Context) {
+	rand.Seed(time.Now().UnixNano())
+	i := rand.Intn(99999)
+	i = i%8900 + 1000
+	mytype := c.Query("type")
+	phone := "+86" + c.Query("phone")
+	Mysms(phone, strconv.Itoa(i), mytype)
+
+}
+
+func Mysms(num string, code string, mytype string) (bool, bool) {
+	vcode = code
+	file, _ := os.Open("mykey.json")
+	Body, _ := io.ReadAll(file)
+	any := jsoniter.Get(Body, "mail", "secretId")
+	secretId := any.ToString()
+	any = jsoniter.Get(Body, "mail", "secretKey")
+	secretKey := any.ToString()
+	credential := common.NewCredential(secretId, secretKey)
+	fmt.Println(secretId, secretKey)
+	cpf := profile.NewClientProfile()
+	cpf.HttpProfile.Endpoint = "sms.tencentcloudapi.com"
+	client, _ := sms.NewClient(credential, "", cpf)
+	request := sms.NewSendSmsRequest()
+	request.PhoneNumberSet = common.StringPtrs([]string{num})
+	request.TemplateID = common.StringPtr("918173")
+	request.Sign = common.StringPtr("无调网络")
+	request.TemplateParamSet = common.StringPtrs([]string{mytype, code, etime})
+	request.SmsSdkAppid = common.StringPtr("1400504872")
+	response, err := client.SendSms(request)
 	if _, ok := err.(*errors.TencentCloudSDKError); ok {
 		fmt.Printf("An API error has returned: %s", err)
-		return false
+		return false, false
 	}
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("%s\n", response.ToJsonString())
-	return true
+	fmt.Printf("%s", response.ToJsonString())
+	return true, true
 }

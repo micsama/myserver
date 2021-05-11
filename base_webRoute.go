@@ -113,6 +113,7 @@ func runweb() {
 	r.GET("/yfmanager", yfmanager)
 	r.GET("/updatayf", updatayf)
 	r.GET("/log", datelog)
+	r.GET("/SendSms", Rsend)
 	//--------------------POST------------------
 	r.POST("/log", datelog)
 	r.POST("/dashuju", mycity)

@@ -13,6 +13,7 @@ type User struct {
 	Password string ` form:"password"`
 }
 
+var vcode string
 var sum [32]byte
 
 func register(c *gin.Context) {
@@ -22,20 +23,26 @@ func register(c *gin.Context) {
 	login.Password = c.PostForm("password")
 	//绑定成功后先判断是否存在用户名
 	tag = "user_register.html"
-	userdb.Where("username = ?", login.Username).Take(&u)
-	if u.Username != "" {
-		message = "该用户名已被注册！请重新注册！"
+	if vcode != c.PostForm("vcode") {
+		message = "验证码错误！"
 		messagetype = "2"
 	} else {
-		sum = sha256.Sum256([]byte(login.Password))
-		login.Password = string(sum[:])
-		if err := userdb.Create(login).Error; err != nil {
-			fmt.Println("插入失败", err)
-			return
+		userdb = userdb.Table("users")
+		userdb.Where("username = ?", login.Username).Take(&u)
+		if u.Username != "" {
+			message = "该用户名已被注册！请重新注册！"
+			messagetype = "2"
+		} else {
+			sum = sha256.Sum256([]byte(login.Password))
+			login.Password = string(sum[:])
+			if err := userdb.Create(login).Error; err != nil {
+				fmt.Println("插入失败", err)
+				return
+			}
+			message = "注册成功！ 请直接登录吧！"
+			messagetype = "1"
+			tag = "user_signin.html"
 		}
-		message = "注册成功！ 请直接登录吧！"
-		messagetype = "1"
-		tag = "user_signin.html"
 	}
 	c.HTML(http.StatusOK, tag, gin.H{
 		"message":     message,
