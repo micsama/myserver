@@ -260,6 +260,7 @@ func home(c *gin.Context) {
 		"message":     "欢迎来到控制台",
 		"messagetype": "1",
 		"uname":       uname,
+		"tianqi":      tianqi(),
 		"sellout":     sellout,
 	})
 
