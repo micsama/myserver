@@ -24,12 +24,15 @@ func Rsend(c *gin.Context) {
 	i = i%8900 + 1000
 	mytype := c.Query("type")
 	phone := "+86" + c.Query("phone")
-	Mysms(phone, strconv.Itoa(i), mytype)
-
+	Mysms(phone, strconv.Itoa(i), mytype, c)
 }
-
-func Mysms(num string, code string, mytype string) (bool, bool) {
-	vcode = code
+func Mysms(num string, code string, mytype string, c *gin.Context) (bool, bool) {
+	// vcode3 := sha256.Sum256([]byte(code))
+	// fmt.Println("hi3")
+	// vcode4 := (*string)(unsafe.Pointer(&vcode3))
+	// fmt.Println("hi4")
+	// c.SetCookie("vcode", *vcode4, 7200, "/", "", false, true)
+	c.SetCookie("vcode", code, 7200, "/", "", false, true)
 	file, _ := os.Open("mykey.json")
 	Body, _ := io.ReadAll(file)
 	any := jsoniter.Get(Body, "mail", "secretId")

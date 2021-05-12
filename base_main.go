@@ -34,7 +34,6 @@ func initsql() {
 	wg.Add(1)
 	var dberr error
 	userdb, dberr = gorm.Open("sqlite3", database)
-	// userdb.AutoMigrate(Newlog("adrlog"), Newlog("drlog"), Newlog("mwuprlog"), Newlog("spaerlog"))
 	if dberr != nil {
 		fmt.Println(dberr)
 	} else {

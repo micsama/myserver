@@ -11,9 +11,9 @@ import (
 type User struct {
 	Username string ` form:"username"`
 	Password string ` form:"password"`
+	Phone    string
 }
 
-var vcode string
 var sum [32]byte
 
 func register(c *gin.Context) {
@@ -21,9 +21,15 @@ func register(c *gin.Context) {
 	//从form输入绑定到login
 	login.Username = c.PostForm("username")
 	login.Password = c.PostForm("password")
+	login.Phone = c.PostForm("phone")
 	//绑定成功后先判断是否存在用户名
 	tag = "user_register.html"
-	if vcode != c.PostForm("vcode") {
+	vcode, _ := c.Cookie("vcode")
+	vcode2 := c.PostForm("vcode")
+	// vcode3 := sha256.Sum256([]byte(vcode2))
+	// vcode4 := (*string)(unsafe.Pointer(&vcode3))
+	// if vcode != *vcode4 {
+	if vcode != vcode2 {
 		message = "验证码错误！"
 		messagetype = "2"
 	} else {
