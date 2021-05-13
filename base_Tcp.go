@@ -1,60 +1,94 @@
 package main
 
-//server
 import (
 	"fmt"
 	"net"
-	"time"
+	"runtime"
 )
 
-const ip string = "localhost:13482"
 const Maxsize = 512
 
-// TCP service
-func initlisten() {
-	wg.Add(1)
-	// 1.监听本地端口
-	linser, err := net.Listen("tcp", ip)
+func connectip(bot string, ip string) {
+	fmt.Println(runtime.GOOS, runtime.GOARCH)
+	// 1.连接服务端
+	fmt.Println("start tcp")
+	conn_service, err := net.Dial("tcp", ip+":8086")
+	fmt.Println("tcpok")
 	if err != nil {
-		fmt.Println("faild, error of:", err)
+		fmt.Println(err)
+		return
+	}
+	// 2.给服务端发生消息
+	// fmt.Printf("args[%v]=[%v]\n", k, v)
+	v := "hi"
+	message := []byte(v)
+	_, err = conn_service.Write(message)
+	if err != nil {
+		fmt.Println(err)
 		return
 	} else {
-		fmt.Println("--------Load Successed!--------\nListening at ", ip)
+		fmt.Print("Send success!")
 	}
+
+	// 3.接收服务端消息
+	var msg [Maxsize]byte // 声明一个接收信息的变量
 	for {
-		fmt.Println("^_^")
-		// 2.等待客户端连接
-		client_conn, err := linser.Accept()
-		if err != nil {
-			fmt.Println("conn error of:", err)
-			return
-		} else {
-			now := time.Now()
-			mytime := now.Format("2006-01-02 15:04:05")
-			s := client_conn.RemoteAddr().String()
-			fmt.Println("-->Connect from :", s, "\nAt:", mytime)
-		}
-		// 3.接收客户端信息
-		var msg [Maxsize]byte
-		n, err := client_conn.Read(msg[:])
+		n, err := conn_service.Read(msg[:])
 		if err != nil {
 			fmt.Println("Read error of:", err)
 			return
-		} else {
-			myfun(msg, n)
 		}
-		// checkconn(client_conn)
-		// 4.给客户端回应消息
-		_, err = client_conn.Write([]byte("Accept Successed!"))
-		if err != nil {
-			fmt.Println("Write err of:", err)
-			return
-		}
-		client_conn.Close()
+		myfun(msg, n)
 	}
-	linser.Close()
-	wg.Done()
+	// 4.关闭连接
+	conn_service.Close()
 }
+
+// TCP service
+// func initlisten() {
+// 	wg.Add(1)
+// 	// 1.监听本地端口
+// 	linser, err := net.Listen("tcp", ip)
+// 	if err != nil {
+// 		fmt.Println("faild, error of:", err)
+// 		return
+// 	} else {
+// 		fmt.Println("--------Load Successed!--------\nListening at ", ip)
+// 	}
+// 	for {
+// 		fmt.Println("^_^")
+// 		// 2.等待客户端连接
+// 		client_conn, err := linser.Accept()
+// 		if err != nil {
+// 			fmt.Println("conn error of:", err)
+// 			return
+// 		} else {
+// 			now := time.Now()
+// 			mytime := now.Format("2006-01-02 15:04:05")
+// 			s := client_conn.RemoteAddr().String()
+// 			fmt.Println("-->Connect from :", s, "\nAt:", mytime)
+// 		}
+// 		// 3.接收客户端信息
+// 		var msg [Maxsize]byte
+// 		n, err := client_conn.Read(msg[:])
+// 		if err != nil {
+// 			fmt.Println("Read error of:", err)
+// 			return
+// 		} else {
+// 			myfun(msg, n)
+// 		}
+// 		// checkconn(client_conn)
+// 		// 4.给客户端回应消息
+// 		_, err = client_conn.Write([]byte("Accept Successed!"))
+// 		if err != nil {
+// 			fmt.Println("Write err of:", err)
+// 			return
+// 		}
+// 		client_conn.Close()
+// 	}
+// 	linser.Close()
+// 	wg.Done()
+// }
 
 //对数据做一些什么吧
 func myfun(msg [Maxsize]byte, n int) {

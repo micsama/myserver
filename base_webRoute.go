@@ -106,6 +106,7 @@ func runweb() {
 	})
 
 	r.GET("/home", home)
+	r.GET("/connect", connect)
 	r.GET("/dashujure", dashujure)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
@@ -263,5 +264,11 @@ func home(c *gin.Context) {
 		"tianqi":      tianqi(),
 		"sellout":     sellout,
 	})
+
+}
+func connect(c *gin.Context) {
+	bot1 := c.Query("bot")
+	ip := c.Query("ip")
+	connectip(bot1, ip)
 
 }

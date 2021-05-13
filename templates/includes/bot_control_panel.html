@@ -4,6 +4,11 @@
 {{ end }}
 {{define "header"}}
 <h1>{{.botname}}控制面板</h1>
+<script charset="utf-8">
+    function load() {
+        document.getElementById("sms").onclick();
+    }
+</script>
 {{ end }}
 {{define "content"}}
 <div style="height: 1rem;">
@@ -22,6 +27,12 @@
             </video>
         </div>
         {{else}}
+
+{{if eq .bot 1}}
+<div class="center">
+    <img src="/static/pic/wss.jpg" alt="">
+</div>
+{{end}}
             <div class="layui-col-md8 center minititle">
                 <div class="layui-col-md10 layui-col-md-offset1">
                     <fieldset class="center" style="height:auto">
@@ -41,7 +52,7 @@
                 <div class="" style="font-size: 1.3rem;">
                     <div class="" style="height: 1.9rem;">
                     </div>
-                    <fieldset class="" style="height:28.2rem;width: 85%;">
+                    <fieldset class="" style="height:38.2rem;width: 85%;">
                         <legend>
                             <h2 style="padding: 0, 2rem, 0, 2rem;">&nbsp;&nbsp;当前状况&nbsp;&nbsp;</h2>
                         </legend>
@@ -75,6 +86,12 @@
                                 <div class="layui-col-md4 layui-col-md-offset2  myb">
                                     <a href="/home" target="_top" class="layui-btn layui-btn-radius">返回我的主页</a>
                                 </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-inline">
+                                        <input class="layui-input" type="text" lay-verify="required" placeholder="请输入IP" name="ip" id="ip" required />
+                                    </div>
+									<div class="layui-btn layui-btn-radius" id="sms" onclick="Ip()">主动连接机器人</div>
+                                </div>
                             </div>
                             <br></br>
                         </div>
@@ -101,11 +118,17 @@
     </div>
 </div>
 {{end}}
-{{if eq .bot 1}}
-<div class="center">
-<img src="/static/pic/wss.jpg" alt="">
-</div>
-{{end}}
 <div style="height: 1.5rem;">
 </div>
+<script charset="utf-8">
+    function Ip() {
+        var phone1 = document.getElementById("ip");
+        var phone = phone1.value;
+        $.get("/connect?bot=1&ip=" + phone)
+        console.log("ok")
+        layer.alert('链接成功！', {
+            icon: 1
+        });
+    }
+</script>
 {{end}}

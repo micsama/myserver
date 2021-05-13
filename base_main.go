@@ -25,7 +25,7 @@ func main() {
 	} else {
 		// myurl = "www.dzmfg.icu"
 	}
-	go initlisten()
+	// go initlisten()
 	initsql()
 	runweb()
 	wg.Wait()
