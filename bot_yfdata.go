@@ -59,7 +59,6 @@ func updatayf(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Query("id"))
 	num, _ := strconv.Atoi(c.Query("num"))
 	var u yfdatasql
-	userdb = userdb.Table("yfdatasqls")
 	userdb.Where("id = ?", id).Take(&u)
 	fmt.Println(id)
 	fmt.Println(u)

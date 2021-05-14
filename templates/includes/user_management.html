@@ -1,0 +1,85 @@
+{{template "base.html" . }}
+{{define "title"}}
+用户管理中心
+{{ end }}
+{{define "header"}}
+<h1>药房机器人管理中心</h1>
+{{ end }}
+{{define "content"}}
+<div class="layui-row" style="padding-top: 0.5rem">
+	<div class="layui-col-md10 layui-col-md-offset1">
+		<table id="demo" lay-filter="test"></table>
+	</div>
+</div>
+<script>
+layui.use('layer', function(){
+  var layer = layui.layer;
+});
+	layui.use("table", function () {
+		var table = layui.table;
+		table.render({
+			even: true,
+			toolbar: "#toolbarDemo",
+			elem: "#demo",
+			height: 612,
+			limit:40,
+			url: "/userdataf/",//从目标页面获取JSON数据
+			page: true,
+			loading: true,
+			title: "user信息表",
+			cols: [[
+					{ field: "Acc", title: "账户类型" ,width:"120"},
+					{ field: "Username", title: "用户名称", sort: true,width:"160"  },
+					{ field: "Phone", title: "用户联系方式", sort: true  ,width:"180"},
+					{ field: "Createtime", title: "账户创建时间", sort: true  ,width:"220"},
+					{ field: "Lastlogin", title: "上次登录时间", sort: false, style: "text"  ,width:"220"},
+				],],
+		});
+table.on('rowDouble(test)', function(obj){
+	console.log(obj.tr)
+	console.log(obj.data)
+	var num,numname
+			layer.prompt({
+				formType:0,
+				title:'请输入进货数量：(负数可以出货)',
+				value:'',
+				area:['70px','40px'],
+			},function(value,index,elem){
+				if (isNaN(value)){
+					alert("请输入正确的数字！")
+				}else{
+					num=value
+				id=obj.data.Id
+				layer.close(index)
+			    $.ajax({
+				    type: "GET",
+					url: "/updatayf?num=" + num+"&id="+id,
+				})
+					setTimeout(table.reload("demo"),500)
+				}
+			})
+});
+table.on('toolbar(test)',function(obj){
+	var checkStatus=table.checkStatus(obj.config.id);
+			layer.msg('add');
+	switch(obj.event){
+		case 'add':
+layer.open({
+	type:2,
+	shade:0.5,
+	shadeClose:true,
+	content:'/addnew',
+	resize:false,
+	area:['300px','498px'],
+	end:setTimeout(table.reload("demo"),2000),
+})
+			break;
+			case 'delete':
+			break;
+			case 'update':
+			break;
+	};
+});
+	});
+</script>
+{{ end }}

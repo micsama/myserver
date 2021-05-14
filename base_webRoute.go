@@ -110,7 +110,9 @@ func runweb() {
 	r.GET("/dashujure", dashujure)
 	r.GET("/dashuju", dashuju)
 	r.GET("/xdlog", xdlog)
+	r.GET("/user_management", user_management)
 	r.GET("/yfdata", yfdata)
+	r.GET("/userdataf", userdataf)
 	r.GET("/yfmanager", yfmanager)
 	r.GET("/updatayf", updatayf)
 	r.GET("/log", datelog)
@@ -178,6 +180,16 @@ func xdlog(c *gin.Context) {
 		"uname":       uname,
 	})
 }
+func userdataf(c *gin.Context) {
+	acc, _ = c.Cookie("acc")
+	usercount, userdatamap := refreshuserdate()
+	c.JSON(http.StatusOK, gin.H{
+		"code":  0,
+		"msg":   "",
+		"count": usercount,
+		"data":  userdatamap,
+	})
+}
 
 func yfdata(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
@@ -188,7 +200,6 @@ func yfdata(c *gin.Context) {
 		"count": yfcount,
 		"data":  yfdatamap,
 	})
-
 }
 func yfmanager(c *gin.Context) {
 	acc, _ = c.Cookie("acc")
