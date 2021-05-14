@@ -12,7 +12,7 @@ import (
 )
 
 var testing bool = true
-var database = "data/data.db"
+var database = "./data/data.db"
 var myurl string
 var tag = "index.html"                      //default web
 var uname, message, messagetype, acc string //cookie
