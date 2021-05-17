@@ -33,11 +33,19 @@ func main() {
 func initsql() {
 	wg.Add(1)
 	var dberr error
-	userdb, dberr = gorm.Open("sqlite3", database)
+	username := "myserver"         //账号
+	password := "4NX2EmiFaTGcNmLw" //密码
+	host := "8.131.56.216"         //数据库地址，可以是Ip或者域名
+	port := 3306                   //数据库端口
+	Dbname := "myserver"           //数据库名
+	timeout := "10s"               //连接超时，10秒
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local&timeout=%s", username, password, host, port, Dbname, timeout)
+	userdb, dberr = gorm.Open("mysql", dsn)
 	if dberr != nil {
 		fmt.Println(dberr)
 	} else {
-		fmt.Println("success")
+		fmt.Println("mysql connected success")
+
 	}
 	wg.Done()
 }

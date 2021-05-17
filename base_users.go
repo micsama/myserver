@@ -30,6 +30,7 @@ func register(c *gin.Context) {
 	tag = "user_register.html"
 	vcode, _ := c.Cookie("vcode")
 	vcode2 := c.PostForm("vcode")
+	vcode2 = vcode //暂时屏蔽验证码
 	if vcode != vcode2 {
 		message = "验证码错误！"
 		messagetype = "2"

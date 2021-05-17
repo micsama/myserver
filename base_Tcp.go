@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net"
 	"runtime"
+	"time"
 )
 
 const Maxsize = 512
@@ -13,6 +14,7 @@ func connectip(bot string, ip string) {
 	// 1.连接服务端
 	fmt.Println("start tcp")
 	conn_service, err := net.Dial("tcp", ip+":8086")
+	// conn_service, err := net.Dial("tcp", ip)
 	fmt.Println("tcpok")
 	if err != nil {
 		fmt.Println(err)
@@ -94,9 +96,49 @@ func connectip(bot string, ip string) {
 func myfun(msg [Maxsize]byte, n int) {
 	fmt.Println("The client msg of:", string(msg[:n]))
 	fmt.Println("------------------------------------")
-}
-
-func checkconn(conn net.Conn) {
-	s := conn.RemoteAddr().String()
+	type mytdlog struct {
+		Date string
+		Time string
+		Name string
+		Num  int
+		Area string
+	}
+	var a mytdlog
+	s := string(msg[:n])
 	fmt.Println(s)
+	data := time.Now().Local().Format("2006-01-02")
+	userdb = userdb.Table("tdlog")
+	a.Area = s
+	a.Date = data
+	a.Time = time.Now().Local().Format("15:04")
+	a.Num = 100
+	a.Name = "疫苗"
+	if err := userdb.Create(a).Error; err != nil {
+		fmt.Println("插入失败", err)
+		return
+	} else {
+		fmt.Println("sucess")
+	}
+}
+func checkconn(conn net.Conn) {
+	type mytdlog struct {
+		Date string
+		Time string
+		Name string
+		Num  int
+		Area string
+	}
+	var a mytdlog
+	s := conn.RemoteAddr().String()
+	data := time.Now().Local().Format("2006-01-02")
+	userdb = userdb.Table("tdlog")
+	a.Area = s
+	a.Date = data
+	a.Time = time.Now().Local().Format("15:04")
+	a.Num = 100
+	a.Name = "疫苗"
+	if err := userdb.Create(a).Error; err != nil {
+		fmt.Println("插入失败", err)
+		return
+	}
 }
