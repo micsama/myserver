@@ -270,7 +270,7 @@ func home(c *gin.Context) {
 	initstatus()
 	c.HTML(http.StatusOK, "user_home.html", gin.H{
 		"message":     "欢迎来到控制台",
-		"messagetype": "1",
+		"messagetype": "0",
 		"uname":       uname,
 		"tianqi":      tianqi(),
 		"sellout":     sellout,

@@ -149,14 +149,14 @@ func todaylog(i int) string {
 		var tds []td
 		var rys []ry
 		userdb = userdb.Table("rylog")
-		userdb.Where("date == ?", date1).Find(&rys)
+		userdb.Where("date = ?", date1).Find(&rys)
 		userdb = userdb.Table("tdlog")
-		userdb.Where("date == ?", date1).Find(&tds)
-		body = "人员日志：\n"
-		body = body + "日期 \t\t时间\t姓名\t联系方式\t\t苏康码状态\n"
-		for _, p := range rys {
-			body = body + p.Date + "\t" + p.Time + "\t" + p.Name + "\t" + strconv.Itoa(p.Phone) + "\t" + p.Skm + "\n"
-		}
+		userdb.Where("date = ?", date1).Find(&tds)
+		// body = "人员日志：\n"
+		// body = body + "日期 \t\t时间\t姓名\t联系方式\t\t苏康码状态\n"
+		// for _, p := range rys {
+		// 	body = body + p.Date + "\t" + p.Time + "\t" + p.Name + "\t" + strconv.Itoa(p.Phone) + "\t" + p.Skm + "\n"
+		// }
 		body = body + "\n运送信息：\n日期 \t\t时间\t名称\t数量\t运送地区\n"
 		for _, p := range tds {
 			body = body + p.Date + "\t" + p.Time + "\t" + p.Name + "\t" + strconv.Itoa(p.Num) + "\t" + p.Area + "\n"
