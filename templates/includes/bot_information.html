@@ -1,0 +1,28 @@
+{{template "base.html" . }}
+{{define "title"}}
+hi
+{{ end }}
+{{define "header"}}
+<h1>机器人简介</h1>
+{{ end }}
+
+{{define "content"}}
+<div class="layui-row">
+    <div class="layui-col-md10 layui-col-md-offset1 yekong">
+        <div class="layui-col-md10 layui-col-md-offset1">
+            <p class="center">
+                <b style="font-size: 2.2rem;color: white;line-height: 4.5rem;"><i class="layui-icon layui-icon-light" style="font-size:1.7rem"></i> 关于{{.botname}}<i class="layui-icon layui-icon-light" style="font-size:1.7rem"></i></b><br />
+            </p>
+            <blockquote class="layui-elem-quote layui-bg-cyan" style="font-size: 1.3rem;">
+                <div class="center">
+                    <img src="/static/pic/{{.botimg}}" alt="" />
+                </div>
+                <pre>
+                {{ .body}}
+                </pre>
+            </blockquote>
+        </div>
+        </p>
+    </div>
+</div>
+{{ end }}

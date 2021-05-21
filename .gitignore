@@ -15,3 +15,5 @@ server
 /static/layui/*
 nohup.out
 config
+
+static/pic/0.jpg

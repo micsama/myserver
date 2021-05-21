@@ -106,6 +106,7 @@ func runweb() {
 	})
 
 	r.GET("/home", home)
+	r.GET("/info", bot_info)
 	r.GET("/connect", connect)
 	r.GET("/dashujure", dashujure)
 	r.GET("/dashuju", dashuju)

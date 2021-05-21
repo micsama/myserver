@@ -39,11 +39,11 @@ type ry struct {
 }
 
 var timenow time.Time
+var botimg = [...]string{"0.jpg", "1.jpg", "2.jpg", "3.jpg"}
 var botname = [...]string{"自定位抗疫机器人", "抗疫空中四旋翼机器人", "消毒机器人", "药房自动发药机器人"}
 var logname = [...]string{"spaerlog", "mwuprlog", "drlog", "adrlog"}
 var mylog = ""
 var body = ""
-
 var bot int
 var value string
 
