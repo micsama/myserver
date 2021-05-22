@@ -6,20 +6,25 @@
 <h1>药房机器人管理中心</h1>
 {{ end }}
 {{define "content"}}
-<div class="layui-row" style="padding-top: 0.5rem">
+<div class="layui-row" style="padding-top: 0.5rem;">
 	<div class="layui-col-md10 layui-col-md-offset1">
 		<table id="demo" lay-filter="test"></table>
 	</div>
 </div>
+<!-- <script src="/home/dzmfg/Workspace/myserver/static/layui/layui.js" charset="utf-8"></script> -->
+<script type="text/html" id="toolbarDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script>
 layui.use('layer', function(){
   var layer = layui.layer;
 });
-	layui.use("table", function () {
+layui.use("table", function () {
 		var table = layui.table;
 		table.render({
 			even: true,
-			toolbar: "#toolbarDemo",
 			elem: "#demo",
 			height: 612,
 			limit:40,
@@ -28,58 +33,47 @@ layui.use('layer', function(){
 			loading: true,
 			title: "user信息表",
 			cols: [[
-					{ field: "Acc", title: "账户类型" ,width:"120"},
+					{ field: "Acc", title: "账户类型" ,width:"100"},
 					{ field: "Username", title: "用户名称", sort: true,width:"160"  },
-					{ field: "Phone", title: "用户联系方式", sort: true  ,width:"180"},
+					{ field: "Phone", title: "用户联系方式", sort: true  ,width:"160"},
 					{ field: "Createtime", title: "账户创建时间", sort: true  ,width:"220"},
 					{ field: "Lastlogin", title: "上次登录时间", sort: false, style: "text"  ,width:"220"},
+					{  width:"auto", align:'center', toolbar: '#toolbarDemo'}
 				],],
 		});
-table.on('rowDouble(test)', function(obj){
-	console.log(obj.tr)
-	console.log(obj.data)
-	var num,numname
-			layer.prompt({
-				formType:0,
-				title:'请输入进货数量：(负数可以出货)',
-				value:'',
-				area:['70px','40px'],
-			},function(value,index,elem){
-				if (isNaN(value)){
-					alert("请输入正确的数字！")
-				}else{
-					num=value
-				id=obj.data.Id
-				layer.close(index)
-			    $.ajax({
-				    type: "GET",
-					url: "/updatayf?num=" + num+"&id="+id,
-				})
-					setTimeout(table.reload("demo"),500)
-				}
-			})
+
+table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+  var data = obj.data; //获得当前行数据
+  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+  var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+  if(layEvent === 'detail'){ //查看
+	  layer.open({
+	type:1,
+		  content:"<div class=\"ptext \" style=\"margin-top:3rem;margin-left:3rem;width:35rem;height:15rem\"><pre>用户名："+ data.Username+ "\n用户账户类型："+data.Acc+"\n用户权限：查看机器人，修改用户\n用户注册时间:"+data.Createtime+"\n用户上次登录日期："+data.Lastlogin+"</pre><div>"
+
+	  })
+  } else if(layEvent === 'del'){ //删除
+    layer.confirm('真的删除行么', function(index){
+      obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+      layer.close(index);
+      //向服务端发送删除指令
+    });
+  } else if(layEvent === 'edit'){ //编辑
+    //do something
+    //同步更新缓存对应的值
+    obj.update({
+      username: '123'
+      ,title: 'xxx'
+    });
+  } else if(layEvent === 'LAYTABLE_TIPS'){
+    layer.alert('Hi，头部工具栏扩展的右侧图标。');
+  }
 });
-table.on('toolbar(test)',function(obj){
-	var checkStatus=table.checkStatus(obj.config.id);
-			layer.msg('add');
-	switch(obj.event){
-		case 'add':
-layer.open({
-	type:2,
-	shade:0.5,
-	shadeClose:true,
-	content:'/addnew',
-	resize:false,
-	area:['300px','498px'],
-	end:setTimeout(table.reload("demo"),2000),
-})
-			break;
-			case 'delete':
-			break;
-			case 'update':
-			break;
-	};
-});
+
+
 	});
+
 </script>
 {{ end }}
+
+

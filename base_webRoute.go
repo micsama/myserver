@@ -105,6 +105,7 @@ func runweb() {
 		get_control_panel(c, 0)
 	})
 
+	r.GET("/Ai", aihelper)
 	r.GET("/home", home)
 	r.GET("/info", bot_info)
 	r.GET("/connect", connect)
