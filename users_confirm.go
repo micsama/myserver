@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"time"
+	"unsafe"
 
 	"github.com/gin-gonic/gin"
 	jsoniter "github.com/json-iterator/go"
@@ -29,7 +30,9 @@ func Rsend(c *gin.Context) {
 func Mysms(num string, code string, mytype string, c *gin.Context) (bool, bool) {
 	// vcode3 := sha256.Sum256([]byte(code))
 	// fmt.Println("hi3")
-	// vcode4 := (*string)(unsafe.Pointer(&vcode3))
+	vcode4 := (*string)(unsafe.Pointer(&value))
+	vcode4 = (*string)(&value)
+	fmt.Println(vcode4)
 	// fmt.Println("hi4")
 	// c.SetCookie("vcode", *vcode4, 7200, "/", "", false, true)
 	c.SetCookie("vcode", code, 7200, "/", "", false, true)

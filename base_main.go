@@ -6,6 +6,7 @@ import (
 	_ "os"
 	"sync"
 
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -20,14 +21,9 @@ var wg sync.WaitGroup                       //sync
 var userdb *gorm.DB                         //db
 
 func main() {
-	if testing {
-		myurl = "localhost"
-	} else {
-		// myurl = "www.dzmfg.icu"
-	}
-	// go initlisten()
-	initsql()
-	runweb()
+	gin.SetMode(gin.ReleaseMode)
+	go initsql() //初始化数据库
+	runweb()     //启动网页
 	wg.Wait()
 }
 func initsql() {
@@ -45,10 +41,6 @@ func initsql() {
 		fmt.Println(dberr)
 	} else {
 		fmt.Println("mysql connected success")
-
 	}
 	wg.Done()
-}
-func (u User) TableName() string {
-	return "users"
 }

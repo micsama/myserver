@@ -13,6 +13,7 @@ import (
 	jsoniter "github.com/json-iterator/go"
 )
 
+//新浪提供的天气Api
 const tqurl = "http://www.weather.com.cn/data/cityinfo/101190101.html"
 
 type Citydata struct {
@@ -39,6 +40,7 @@ type Sinajson struct {
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 var Body string
 
+//将api返回的内容文件下载到本地
 func getjson() {
 	s := "rm fymap2020_data.d.json.1;rm fymap2020_data.d.json;wget https://interface.sina.cn/news/wap/fymap2020_data.d.json"
 	cmd := exec.Command("/bin/bash", "-c", s)

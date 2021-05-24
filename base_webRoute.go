@@ -126,6 +126,7 @@ func runweb() {
 	r.POST("/register", register)
 	r.POST("/home", signin)
 	//---------Run---------------------/
+	hello()
 	r.Run(":13488")
 	wg.Done()
 
@@ -140,7 +141,7 @@ func loadTemplates(templatesDir string) multitemplate.Renderer {
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(includes)
+	// fmt.Println(includes)
 	// 为layouts/和includes/目录生成 templates map
 	for _, include := range includes {
 		layoutCopy := make([]string, len(layouts))
@@ -284,4 +285,8 @@ func connect(c *gin.Context) {
 	ip := c.Query("ip")
 	connectip(bot1, ip)
 
+}
+func hello() {
+	fmt.Println("-----------------------------------------------------------")
+	fmt.Println("\n    _          _ _       \n   | |__   ___| | | ___  \n   | '_ \\ / _ \\ | |/ _ \\ \n   | | | |  __/ | | (_) |\n   |_| |_|\\___|_|_|\\___/ \n   ")
 }
