@@ -119,6 +119,7 @@ func runweb() {
 	r.GET("/updatayf", updatayf)
 	r.GET("/log", datelog)
 	r.GET("/SendSms", Rsend)
+	r.POST("/Aiask", aiaskroute)
 	//--------------------POST------------------
 	r.POST("/log", datelog)
 	r.POST("/dashuju", mycity)

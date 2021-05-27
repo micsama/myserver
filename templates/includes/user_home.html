@@ -34,7 +34,7 @@
                     <a href="/user_management" target="_top" class="layui-btn layui-btn-radius">管理用户</a>
                 </div>
                 <div class="layui-col-md2 center" style="font-size: 1.3rem;">
-                    <a href="/monitor" target="_top" class="layui-btn layui-btn-radius">监控中心</a>
+                    <button class="layui-btn layui-btn-radius" onclick="hi()">Ai机器人</button>
                 </div>
 				<div class="layui-col-md6" style="font-size: 1.4rem;">
 					{{.tianqi}}
@@ -176,7 +176,20 @@
 </div>
 {{else}}
     <h1 class="center">请登录后再查看本页面！</h1>
-
     {{ end }}
+	<script charset="utf-8">
+		function hi(){
+layer.open({
+	type:2,
+	shade:0.5,
+	shadeClose:true,
+	content:'/Ai',
+	resize:false,
+	area:['700px','480px'],
+})
+		}
 
+
+
+	</script>
     {{ end }}

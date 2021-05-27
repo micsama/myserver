@@ -32,22 +32,13 @@
         var pw1 = document.getElementById("password").value;
         var pw2 = document.getElementById("password1").value;
         if (pw1) {
-            if (pw1 == pw2) {
-                document.getElementById("comf").style.backgroundColor = "green";
-                flag1 = true;
-            } else {
-                document.getElementById("comf").style.backgroundColor = "red";
-                flag1 = false;
+            if (pw1 == pw2) {document.getElementById("comf").style.backgroundColor = "green";flag1 = true;
+            } else {document.getElementById("comf").style.backgroundColor = "red";flag1 = false;
             }
-
-        } else {
-            document.getElementById("comf").style.backgroundColor = "pink";
+        } else { document.getElementById("comf").style.backgroundColor = "pink";
         }
-        if (flag1 && flag2) {
-            document.getElementById("submit").disabled = false;
-
-        } else {
-            document.getElementById("submit").disabled = true;
+        if (flag1 && flag2) {document.getElementById("submit").disabled = false;
+        } else {document.getElementById("submit").disabled = true;
         }
     }
     setInterval("validate()", "1000");

@@ -1,0 +1,53 @@
+{{template "base.html" . }} {{define "title"}} Ai机器人助手 {{ end }} {{define
+"header"}}
+<h1>Ai机器人助手</h1>
+{{ end }} {{define "content"}}
+<div class="" style="width: 100%">
+	<div class="ptext center" style="height: 4.5rem;font-size: 2rem;">
+		<pre style="margin-top:50px">
+您好，请问您有什么问题?</pre>
+	</div>
+  <div class="ptext" id="mytest" style="margin-left: 20px;line-height: 2rem;height: auto;">
+	  你可以问我一些问题~~~
+  </div>
+  <div class="layui-row">
+    <div class="layui-col-md4 layui-col-md-offset2">
+      <input
+        id="in"
+        class="layui-input"
+        style="width: 60%"
+        placeholder="请输入问题"
+      />
+    </div>
+    <div class="layui-col-md2" style="text-align: right">
+      <div
+        style="margin-top: -37px"
+        onclick="send()"
+        class="layui-btn layui-btn-radius"
+      >
+        发送消息
+      </div>
+	  <br></br>
+	  <br></br>
+    </div>
+  </div>
+</div>
+<script charset="utf-8">
+   function send() {
+     var    ask = $("#in").val();
+          $.ajax({
+            url : "/Aiask",
+            type : "POST",
+  	   data:{ask:ask},
+            success : function(msg) {
+			var html=document.getElementById('mytest').innerHTML;
+			html =html+"<pre style=\"height: 1.5rem;\">用户问  : "+ask+"</pre>";
+  html=html+"<div style=\"height: 2rem;\">Ai机器人："+msg.s+"</div>";
+     $("#mytest").html(html);
+            },
+            error:function(msg){
+            }
+          })
+   }
+</script>
+{{ end }}
