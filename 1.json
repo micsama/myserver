@@ -1,0 +1,17 @@
+{
+    "content": [{
+        "subject": "药房",
+        "relationship": "拥有",
+        "object": "酒精"
+    }, {
+        "subject": "药房",
+        "relationship": "拥有",
+        "object": "棉签"
+    }, {
+        "subject": "消毒机器人",
+        "attribute": "电量",
+        "value": "70%"
+    }, {
+        "其他": "......更多"
+    }]
+}
